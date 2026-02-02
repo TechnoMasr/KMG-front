@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { BsChatLeftText } from "react-icons/bs";
 import { Badge } from "@/components/ui/badge";
-import { BadgeCheck, NotebookTabs, Send } from "lucide-react";
+import { FaCheckCircle, FaBook, FaPaperPlane } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
@@ -53,7 +53,7 @@ const MyOrdersCard = ({ order }) => {
   return (
     <>
       <div className="card flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex items-center gap-2 lg:gap-4">
+        <div className="flex items-start gap-2 lg:gap-4">
           <div className="w-24 lg:w-36 aspect-square overflow-hidden rounded-2xl">
             <img
               loading="lazy"
@@ -85,7 +85,7 @@ const MyOrdersCard = ({ order }) => {
 
           <div className="flex items-center gap-2">
             <Badge variant={`outline`} className="gap-2 rounded-full">
-              <BadgeCheck />
+              <FaCheckCircle />
               {order.status}
             </Badge>
 
@@ -94,7 +94,7 @@ const MyOrdersCard = ({ order }) => {
               variant="outline"
               className="gap-2 rounded-full"
             >
-              <NotebookTabs />
+              <FaBook />
               {t("myOrdersCard.buttons.details")}
             </Button>
 
@@ -120,7 +120,7 @@ const MyOrdersCard = ({ order }) => {
           <div className="space-y-4 py-4">
             {/* Order Details */}
             <div className="bg-muted rounded-lg p-4 space-y-3">
-              <div className="flex items-center gap-3">
+              <div className="flex items-start gap-3">
                 <img
                   loading="lazy"
                   src={order?.product?.game_icon}
@@ -139,7 +139,9 @@ const MyOrdersCard = ({ order }) => {
                 <span className="text-muted-foreground">
                   {t("myOrdersCard.messageDialog.price")}
                 </span>
-                <span className="font-bold">{order?.total_price} {order?.currency}</span>
+                <span className="font-bold">
+                  {order?.total_price} {order?.currency}
+                </span>
               </div>
 
               <div className="flex items-center justify-between text-sm">
@@ -147,7 +149,7 @@ const MyOrdersCard = ({ order }) => {
                   {t("myOrdersCard.messageDialog.status")}
                 </span>
                 <Badge variant="outline" className="gap-1">
-                  <BadgeCheck size={14} />
+                  <FaCheckCircle size={14} />
                   {order.status}
                 </Badge>
               </div>
@@ -216,7 +218,7 @@ const MyOrdersCard = ({ order }) => {
               ) : (
                 <>
                   {t("myOrdersCard.messageDialog.send")}
-                  <Send size={16} />
+                  <FaPaperPlane size={16} />
                 </>
               )}
             </Button>

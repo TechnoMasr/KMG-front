@@ -5,7 +5,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { SlidersHorizontal } from "lucide-react";
+import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 
 import { getOrders } from "@/services/paymentsServices";
 import { useQuery } from "@tanstack/react-query";
@@ -72,7 +72,7 @@ const Orders = () => {
       <div className="card flex flex-col gap-4">
         <div className="flex items-center gap-2 sm:w-fit">
           <div className="flex items-center gap-2 min-w-fit text-sm">
-            <SlidersHorizontal size={20} />
+            <HiAdjustmentsHorizontal size={20} />
             {t("orders.filter.label")}
           </div>
 

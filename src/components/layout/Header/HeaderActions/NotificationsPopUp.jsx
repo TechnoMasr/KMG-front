@@ -3,7 +3,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Bell } from "lucide-react";
+import { FaBell } from "react-icons/fa";
 import NotificationsSkeleton from "@/components/Loading/SkeletonLoading/NotificationsSkeleton";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
@@ -37,7 +37,7 @@ const NotificationsPopUp = () => {
     <Popover open={openNotifications} onOpenChange={setOpenNotifications}>
       <PopoverTrigger asChild>
         <Button variant="outline" size="icon" className="rounded-full relative">
-          <Bell />
+          <FaBell className="w-4 h-4" />
           <NotificationsBadge count={unreadNotifications} />
         </Button>
       </PopoverTrigger>

@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router";
 import { Button } from "@/components/ui/button";
-import { MessageSquareText } from "lucide-react";
 import LanguageSwitcher from "./LanguageSwitcher";
 import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
@@ -10,6 +9,7 @@ import NotificationsBadge from "@/components/common/NotificationsBadge";
 import ProfileSide from "./ProfileSide";
 import HeaderSearch from "./HeaderSearch";
 import useRequireAuth from "@/hooks/useRequireAuth";
+import { BsChatLeftText } from "react-icons/bs";
 
 const HeaderActions = () => {
   const navigate = useNavigate();
@@ -41,7 +41,8 @@ const HeaderActions = () => {
             className="rounded-full relative"
             onClick={handleGoToChat}
           >
-            <MessageSquareText />
+            <BsChatLeftText />
+
             <NotificationsBadge count={unreadChats} />
           </Button>
 
@@ -50,7 +51,6 @@ const HeaderActions = () => {
       )}
 
       <LanguageSwitcher />
-
       <ProfileSide />
     </div>
   );

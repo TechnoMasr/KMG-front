@@ -1,6 +1,6 @@
 import { readNotification } from "@/services/notificationsServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { Bell } from "lucide-react";
+import { FaRegBell } from "react-icons/fa";
 
 const NotificationCard = ({ notification, header = false }) => {
   const queryClient = useQueryClient();
@@ -39,7 +39,7 @@ const NotificationCard = ({ notification, header = false }) => {
             `}
     >
       <div
-        className={`flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full
+        className={`flex items-center justify-center w-10 h-10 lg:w-12 lg:h-12 rounded-full text-2xl
                 ${
                   notification.read_at
                     ? "bg-white text-muted-foreground"
@@ -47,7 +47,7 @@ const NotificationCard = ({ notification, header = false }) => {
                 }
               `}
       >
-        <Bell />
+        <FaRegBell />
       </div>
 
       <div className="flex flex-col gap-1 flex-1">

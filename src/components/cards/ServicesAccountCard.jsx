@@ -29,7 +29,7 @@ const ServicesAccountCard = ({ item }) => {
           <div className="flex items-center gap-2">
             <img
               loading="lazy"
-              src={item?.platforms[0]?.image}
+              src={item?.platforms[0]?.icon}
               alt="game-icon"
               className="w-8 h-8 object-contain"
             />

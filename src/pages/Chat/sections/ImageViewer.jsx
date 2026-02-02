@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { X, ZoomIn, ZoomOut, RotateCw, RotateCcw } from "lucide-react";
+import {
+  FaTimes,
+  FaSearchPlus,
+  FaSearchMinus,
+  FaRedoAlt,
+} from "react-icons/fa";
 
 const ImageViewer = ({ open, image, onClose }) => {
   const [scale, setScale] = useState(1);
@@ -48,23 +53,23 @@ const ImageViewer = ({ open, image, onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <button onClick={() => setScale((s) => s + 0.2)}>
-          <ZoomIn className="text-white" />
+          <FaSearchPlus className="text-white w-5 h-5" />
         </button>
 
         <button onClick={() => setScale((s) => Math.max(1, s - 0.2))}>
-          <ZoomOut className="text-white" />
+          <FaSearchMinus className="text-white w-5 h-5" />
         </button>
 
         <button onClick={() => setRotation((r) => r - 90)}>
-          <RotateCcw className="text-white" />
+          <FaRedoAlt className="text-white w-5 h-5 rotate-180" />
         </button>
 
         <button onClick={() => setRotation((r) => r + 90)}>
-          <RotateCw className="text-white" />
+          <FaRedoAlt className="text-white w-5 h-5" />
         </button>
 
         <button onClick={onClose}>
-          <X className="text-white" />
+          <FaTimes className="text-white w-5 h-5" />
         </button>
       </div>
 
@@ -82,11 +87,7 @@ const ImageViewer = ({ open, image, onClose }) => {
           onClick={(e) => e.stopPropagation()}
           className="max-h-[90vh] max-w-[90vw] select-none object-contain"
           style={{
-            transform: `
-              translate(${position.x}px, ${position.y}px)
-              scale(${scale})
-              rotate(${rotation}deg)
-            `,
+            transform: `translate(${position.x}px, ${position.y}px) scale(${scale}) rotate(${rotation}deg)`,
             cursor: dragging ? "grabbing" : "grab",
           }}
         />

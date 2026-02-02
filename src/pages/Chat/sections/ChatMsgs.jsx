@@ -3,7 +3,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useTranslation } from "react-i18next";
 import { AiOutlineClockCircle, AiOutlineReload } from "react-icons/ai";
 import { MdErrorOutline } from "react-icons/md";
-import { Loader2 } from "lucide-react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const ChatMsgs = ({
   messages,
@@ -206,7 +206,7 @@ const ChatMsgs = ({
     >
       {isLoadingMore && (
         <div className="flex justify-center py-2">
-          <Loader2 className="h-6 w-6 animate-spin text-primary" />
+          <AiOutlineLoading3Quarters className="h-6 w-6 animate-spin text-primary" />
         </div>
       )}
 

@@ -28,16 +28,18 @@ const PaymentList = ({ onPaymentClick, currentPayment }) => {
           <div
             key={item.id}
             onClick={() => onPaymentClick(item)}
-            className={`card flex flex-col items-center text-center gap-2 cursor-pointer hover:scale-102 duration-200 ${
+            className={`card flex flex-col w-[150px] items-center text-center gap-2 cursor-pointer hover:scale-102 duration-200 ${
               item?.id === currentPayment?.id ? "border-primary border-2" : ""
             }`}
           >
-            <img
-              loading="lazy"
-              src={item.image}
-              alt={item.title}
-              className="max-h-[70px] object-contain"
-            />
+            <div className="w-full aspect-video bg-accent rounded-md overflow-hidden">
+              <img
+                loading="lazy"
+                src={item.image}
+                alt={item.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <p>{item.title}</p>
           </div>
         ))}

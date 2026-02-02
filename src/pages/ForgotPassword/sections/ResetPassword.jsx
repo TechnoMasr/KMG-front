@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 
-import { Lock } from "lucide-react";
+import { FaLock } from "react-icons/fa";
 import { useMemo } from "react";
 import { getPasswordStrength, strengthLabel } from "@/utils/PasswordStrength";
 
@@ -101,7 +101,7 @@ const ResetPasswordPage = ({ parentData }) => {
             name="password"
             label={t("resetPassword.newPassword")}
             type="password"
-            icon={<Lock size={18} />}
+            icon={<FaLock size={18} />}
           />
 
           <MainInput
@@ -109,7 +109,7 @@ const ResetPasswordPage = ({ parentData }) => {
             name="password_confirmation"
             label={t("resetPassword.confirmPassword")}
             type="password"
-            icon={<Lock size={18} />}
+            icon={<FaLock size={18} />}
           />
 
           {/* Password Strength */}

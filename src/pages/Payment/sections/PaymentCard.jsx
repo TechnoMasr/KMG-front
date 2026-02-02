@@ -9,7 +9,7 @@ const PaymentCard = ({ currentPayment, cancelPayment, state }) => {
 
   if (!currentPayment) return null;
 
-  const price = parseFloat(state.product_price);
+  const price = parseFloat(state?.product_price);
   const amount = parseFloat(currentPayment.amount);
   const serviceFee = parseFloat(currentPayment.service_fee);
   // 1️⃣ حساب النسبة المئوية من السعر
@@ -25,19 +25,19 @@ const PaymentCard = ({ currentPayment, cancelPayment, state }) => {
         <li className="flex justify-between gap-2 py-1 text-muted-foreground">
           <p>{t("paymentCard.totalPrice")}</p>
           <span>
-            {price} {state.currency}
+            {price} {state?.currency}
           </span>
         </li>
         <li className="flex justify-between gap-2 py-1 text-muted-foreground">
           <p>{t("paymentCard.serviceFee")}</p>
           <span>
-            {extraFees} {state.currency}
+            {extraFees} {state?.currency}
           </span>
         </li>
         <li className="flex justify-between gap-2 py-1">
           <p>{t("paymentCard.finalPrice")}</p>
           <span>
-            {finalPrice} {state.currency}
+            {finalPrice} {state?.currency}
           </span>
         </li>
       </ul>
@@ -45,7 +45,7 @@ const PaymentCard = ({ currentPayment, cancelPayment, state }) => {
       <div className="flex items-center justify-between gap-2">
         <h3 className="font-bold mb-2">{currentPayment.title}</h3>
 
-        <div className="w-16 h-8 overflow-hidden rounded">
+        <div className="w-16 aspect-video overflow-hidden rounded">
           <img
             loading="lazy"
             src={currentPayment.image}

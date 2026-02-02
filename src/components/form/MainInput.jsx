@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Eye, EyeOff } from "lucide-react";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 import {
   FormField,
@@ -32,7 +32,6 @@ const MainInput = ({
   const [showPassword, setShowPassword] = useState(false);
   const isPassword = type === "password";
 
-
   return (
     <div>
       <FormField
@@ -45,7 +44,6 @@ const MainInput = ({
 
             <FormControl>
               <div>
-                {/* TEXTAREA */}
                 {type === "textarea" && (
                   <Textarea
                     {...field}
@@ -54,7 +52,6 @@ const MainInput = ({
                   />
                 )}
 
-                {/* SELECT */}
                 {type === "select" && (
                   <Select
                     onValueChange={field.onChange}
@@ -75,7 +72,6 @@ const MainInput = ({
                   </Select>
                 )}
 
-                {/* FILE */}
                 {type === "file" && (
                   <Input
                     id={name}
@@ -85,7 +81,6 @@ const MainInput = ({
                   />
                 )}
 
-                {/* DEFAULT INPUT */}
                 {type !== "textarea" &&
                   type !== "select" &&
                   type !== "file" && (
@@ -109,7 +104,7 @@ const MainInput = ({
                         placeholder={placeholder}
                         disabled={disabled}
                         className={`bg-muted rounded-full
-                      ${icon ? "ps-10" : ""} ${isPassword ? "pe-10" : ""}`}
+                        ${icon ? "ps-10" : ""} ${isPassword ? "pe-10" : ""}`}
                       />
 
                       {isPassword && (
@@ -120,9 +115,9 @@ const MainInput = ({
                           disabled={disabled}
                         >
                           {showPassword ? (
-                            <EyeOff size={18} />
+                            <FiEyeOff size={18} />
                           ) : (
-                            <Eye size={18} />
+                            <FiEye size={18} />
                           )}
                         </button>
                       )}
@@ -131,7 +126,7 @@ const MainInput = ({
               </div>
             </FormControl>
 
-            <FormMessage className={`text-red-400`} />
+            <FormMessage className="text-red-400" />
           </FormItem>
         )}
       />

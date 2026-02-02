@@ -1,4 +1,4 @@
-import { Star } from "lucide-react";
+import { FaStar, FaRegStar } from "react-icons/fa";
 
 const RatingStars = ({
   rating = 0,
@@ -11,25 +11,29 @@ const RatingStars = ({
       {Array.from({ length: max }).map((_, index) => {
         const starValue = index + 1;
 
+        // Full star
         if (rating >= starValue) {
-          // Full star
-          return (
-            <Star key={index} size={size} className={`${color} fill-current`} />
-          );
+          return <FaStar key={index} size={size} className={`${color}`} />;
         }
 
+        // Half star
         if (rating >= starValue - 0.5) {
-          // Half star
           return (
             <div
               key={index}
               className="relative"
               style={{ width: size, height: size }}
             >
-              <Star size={size} className={color} />
-              <Star
+              {/* Empty star background */}
+              <FaRegStar
                 size={size}
-                className={`${color} fill-current absolute top-0 left-0`}
+                className={`${color} absolute top-0 left-0`}
+              />
+
+              {/* Half filled star */}
+              <FaStar
+                size={size}
+                className={`${color} absolute top-0 left-0`}
                 style={{ clipPath: "inset(0 50% 0 0)" }}
               />
             </div>
@@ -37,7 +41,7 @@ const RatingStars = ({
         }
 
         // Empty star
-        return <Star key={index} size={size} className={color} />;
+        return <FaRegStar key={index} size={size} className={color} />;
       })}
     </div>
   );

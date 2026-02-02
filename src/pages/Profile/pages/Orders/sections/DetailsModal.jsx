@@ -198,7 +198,7 @@ const DetailsModal = ({ order_id, open, onClose }) => {
                     loading="lazy"
                     src={orderDetails?.product?.game_image}
                     alt="order"
-                    className="w-full h-[200px] md:h-[300px] object-cover rounded-xl"
+                    className="w-full aspect-video object-cover rounded-xl"
                   />
                 </DialogDescription>
               </DialogHeader>

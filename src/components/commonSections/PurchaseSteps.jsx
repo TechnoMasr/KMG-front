@@ -1,7 +1,7 @@
 import SectionTitle from "@/components/common/SectionTitle";
 import { getPurchaseSteps } from "@/services/mainServices";
 import { useQuery } from "@tanstack/react-query";
-import { CreditCard, Package, Search } from "lucide-react";
+import { FiSearch, FiCreditCard, FiPackage } from "react-icons/fi";
 import PurchaseStepsSkeleton from "../Loading/SkeletonLoading/PurchaseStepsSkeleton";
 import { useTranslation } from "react-i18next";
 
@@ -21,12 +21,18 @@ const PurchaseSteps = () => {
     return null;
   }
 
-  const list = purchaseStepsData.map((item, index) => ({
-    id: index + 1,
-    title: item.title,
-    description: item.description,
-    icon: index === 0 ? <Search /> : index === 1 ? <CreditCard /> : <Package />,
-  }));
+  const icons = [FiSearch, FiCreditCard, FiPackage];
+
+  const list = purchaseStepsData.map((item, index) => {
+    const Icon = icons[index] || FiPackage;
+
+    return {
+      id: index + 1,
+      title: item.title,
+      description: item.description,
+      icon: <Icon size={28} />,
+    };
+  });
 
   return (
     <div>

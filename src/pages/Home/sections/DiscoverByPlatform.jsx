@@ -41,12 +41,11 @@ const DiscoverByPlatform = ({ data = [], isLoading }) => {
           1024: {
             slidesPerView: 4.5,
           },
-
         }}
       >
         {data?.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="h-36 xl:h-48 bg-background rounded-xl overflow-hidden">
+            <div className="w-full aspect-video bg-background rounded-xl overflow-hidden">
               <img
                 loading="lazy"
                 src={item.image}

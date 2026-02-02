@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { Send, Image as ImageIcon, Paperclip } from "lucide-react";
+import {
+  HiOutlinePaperAirplane,
+  HiOutlinePhotograph,
+  HiOutlinePaperClip,
+} from "react-icons/hi";
 
 const ChatInput = ({ sendMsgMutation, isLoading }) => {
   const [input, setInput] = useState("");
@@ -63,7 +67,7 @@ const ChatInput = ({ sendMsgMutation, isLoading }) => {
       <div className="flex items-center gap-2">
         {/* Image */}
         <label className="cursor-pointer text-white/70 hover:text-white">
-          <ImageIcon size={20} />
+          <HiOutlinePhotograph className="w-5 h-5" />
           <input
             type="file"
             accept="image/*"
@@ -75,7 +79,7 @@ const ChatInput = ({ sendMsgMutation, isLoading }) => {
 
         {/* File */}
         <label className="cursor-pointer text-white/70 hover:text-white">
-          <Paperclip size={20} />
+          <HiOutlinePaperClip className="w-5 h-5" />
           <input
             type="file"
             hidden
@@ -102,7 +106,7 @@ const ChatInput = ({ sendMsgMutation, isLoading }) => {
           {isLoading ? (
             <div className="animate-spin w-[18px] h-[18px] border-2 border-white border-t-transparent rounded-full" />
           ) : (
-            <Send size={18} />
+            <HiOutlinePaperAirplane className="w-[18px] h-[18px] rotate-45 rtl:-rotate-45" />
           )}
         </button>
       </div>

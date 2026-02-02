@@ -1,7 +1,7 @@
 import ServicesSectionSkeleton from "@/components/Loading/SkeletonLoading/ServicesSectionSkeleton";
 import { getGamesByService } from "@/services/homeServices";
 import { useQuery } from "@tanstack/react-query";
-import { ChevronLeft } from "lucide-react";
+import { HiChevronLeft } from "react-icons/hi";
 import { Link } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -64,7 +64,7 @@ const ServicesSection = () => {
                 className="flex items-center gap-1 group hover:underline"
               >
                 {t("servicesSection.seeMore")}
-                <ChevronLeft className="group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all ltr:rotate-180" />
+                <HiChevronLeft className="group-hover:-translate-x-1 ltr:group-hover:translate-x-1 transition-all ltr:rotate-180" />
               </Link>
             </div>
 

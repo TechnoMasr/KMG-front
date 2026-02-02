@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeLanguage } from "@/store/languageSlice/languageSlice";
 import LoadingModal from "@/components/Loading/LoadingModal";
-import { Globe } from "lucide-react";
+import { FaGlobe } from "react-icons/fa";
 
 import {
   Select,
@@ -32,8 +32,8 @@ const LanguageSwitcher = () => {
   return (
     <>
       <Select value={lang} onValueChange={handleChangeLanguage}>
-        <SelectTrigger className="min-w-fit rounded-full cursor-pointer border-border">
-          <Globe size={16} />
+        <SelectTrigger className="min-w-fit rounded-full cursor-pointer border-border flex items-center gap-2">
+          <FaGlobe className="w-4 h-4" />
           <div className="hidden sm:block">
             <SelectValue />
           </div>

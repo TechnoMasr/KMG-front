@@ -6,7 +6,7 @@ import {
   FormControl,
   FormMessage,
 } from "@/components/ui/form";
-import { Upload, X } from "lucide-react";
+import { FiUpload, FiX } from "react-icons/fi";
 import { useTranslation } from "react-i18next";
 import { useWatch } from "react-hook-form";
 
@@ -14,15 +14,21 @@ const ImageInput = ({ control, name, label, disabled = false }) => {
   const { t } = useTranslation();
   const [preview, setPreview] = useState(null);
 
-  // مراقبة قيمة الـ field
   const fieldValue = useWatch({ control, name });
 
-  // لما الـ field value يبقى null، امسح الـ preview
   useEffect(() => {
     if (!fieldValue) {
       setPreview(null);
     }
   }, [fieldValue]);
+
+  useEffect(() => {
+    return () => {
+      if (preview) {
+        URL.revokeObjectURL(preview);
+      }
+    };
+  }, [preview]);
 
   const handleFile = (file, fieldOnChange) => {
     if (file) {
@@ -77,7 +83,7 @@ const ImageInput = ({ control, name, label, disabled = false }) => {
                   disabled={disabled}
                 />
 
-                <Upload size={30} />
+                <FiUpload size={30} />
 
                 <p className="text-center text-sm text-muted-foreground">
                   {t("ImageInput.placeholder")}
@@ -92,14 +98,14 @@ const ImageInput = ({ control, name, label, disabled = false }) => {
                 loading="lazy"
                 src={preview}
                 alt={t("ImageInput.previewAlt")}
-                className="max-h-40 object-contain rounded-md"
+                className="aspect-video object-contain rounded-md"
               />
               <button
                 type="button"
                 onClick={() => removeFile(field.onChange)}
                 className="absolute -top-2 -right-2 w-6 h-6 flex items-center justify-center rounded-full bg-red-600 text-white cursor-pointer z-10"
               >
-                <X size={20} />
+                <FiX size={20} />
               </button>
             </div>
           )}

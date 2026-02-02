@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
-import { Lock } from "lucide-react";
+import { FaLock } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
 import { updateProfile } from "@/services/authServices";
 import { useState } from "react";
@@ -100,7 +100,7 @@ const ChangePasswordModal = ({ open, onClose }) => {
               name="current_password"
               label={t("changePassword.form.currentPassword.label")}
               type="password"
-              icon={<Lock size={18} />}
+              icon={<FaLock size={18} />}
             />
 
             <MainInput
@@ -108,7 +108,7 @@ const ChangePasswordModal = ({ open, onClose }) => {
               name="password"
               label={t("changePassword.form.newPassword.label")}
               type="password"
-              icon={<Lock size={18} />}
+              icon={<FaLock size={18} />}
             />
 
             <MainInput
@@ -116,7 +116,7 @@ const ChangePasswordModal = ({ open, onClose }) => {
               name="password_confirmation"
               label={t("changePassword.form.confirmPassword.label")}
               type="password"
-              icon={<Lock size={18} />}
+              icon={<FaLock size={18} />}
             />
 
             <DialogFooter className="flex gap-3 pt-2">

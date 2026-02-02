@@ -1,4 +1,4 @@
-import { Search } from "lucide-react";
+import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router";
 import { getAllGamesByService } from "@/services/serviceServices";
 import { useQuery } from "@tanstack/react-query";
@@ -69,7 +69,7 @@ const Games = () => {
       <section className="container py-6 lg:py-10 space-y-6 lg:space-y-10">
         <div className="w-full flex items-center gap-2 bg-input py-2 px-4 rounded-full">
           <button>
-            <Search />
+            <FaSearch />
           </button>
 
           <input
@@ -93,7 +93,7 @@ const Games = () => {
                 key={item.id}
                 className="flex flex-col gap-2 card"
               >
-                <div className="w-full h-60 bg-accent overflow-hidden rounded-lg">
+                <div className="w-full aspect-square bg-accent overflow-hidden rounded-lg">
                   <img
                     loading="lazy"
                     src={item.image}

@@ -13,18 +13,18 @@ const OffersCard = ({ item, onOfferClick, currentOffer }) => {
     <div
       key={item.id}
       onClick={handleChooseOffer}
-      className={`relative overflow-hidden card min-w-[140px] flex flex-col items-center text-center gap-2 cursor-pointer duration-200
+      className={`relative overflow-hidden card w-[150px] flex flex-col items-center text-center gap-2 cursor-pointer duration-200
                 ${isCurrentOffer ? "border-primary border-2" : ""}`}
     >
       {/* Overlay */}
       {isUnavailable && <UnavailableLayout />}
 
-      <div className="w-full h-[70px] bg-accent rounded-md overflow-hidden">
+      <div className="w-full aspect-video bg-accent rounded-md overflow-hidden">
         <img
           loading="lazy"
           src={item.image}
           alt={item.title}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-cover"
         />
       </div>
 

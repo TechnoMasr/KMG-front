@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 
-import { Mail, Lock } from "lucide-react";
+import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 import { Link, useNavigate } from "react-router";
 import { z } from "zod";
 import { loginUser } from "@/services/authServices";
@@ -66,7 +66,7 @@ const Login = () => {
             name="email"
             label={t("auth.login.emailLabel")}
             placeholder={t("auth.login.emailPlaceholder")}
-            icon={<Mail size={18} />}
+            icon={<HiOutlineMail size={18} />}
           />
 
           <MainInput
@@ -74,7 +74,7 @@ const Login = () => {
             name="password"
             label={t("auth.login.passwordLabel")}
             type="password"
-            icon={<Lock size={18} />}
+            icon={<HiOutlineLockClosed size={18} />}
           />
 
           <Link

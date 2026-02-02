@@ -11,7 +11,7 @@ import PhoneInputField from "@/components/form/PhoneInputField";
 import FormError from "@/components/form/FormError";
 
 import { BsChatLeftText } from "react-icons/bs";
-import { User, Mail, SquarePen } from "lucide-react";
+import { FaUser, FaEnvelope, FaPen } from "react-icons/fa";
 import { isValidPhoneNumber } from "react-phone-number-input";
 
 import ChangePasswordModal from "./sections/ChangePasswordModal";
@@ -118,7 +118,7 @@ const Account = () => {
               className="absolute bottom-0 start-0 w-8 h-8 bg-primary rounded-full z-10 cursor-pointer flex items-center justify-center"
               onClick={() => fileInputRef.current?.click()}
             >
-              <SquarePen size={20} />
+              <FaPen size={16} />
             </div>
 
             <UserAvatar name={profile?.name} image={avatar} size={100} />
@@ -152,7 +152,7 @@ const Account = () => {
               name="name"
               label={t("account.form.name.label")}
               placeholder={t("account.form.name.placeholder")}
-              icon={<User size={18} />}
+              icon={<FaUser size={18} />}
             />
 
             <MainInput
@@ -160,7 +160,7 @@ const Account = () => {
               name="email"
               label={t("account.form.email.label")}
               placeholder={t("account.form.email.placeholder")}
-              icon={<Mail size={18} />}
+              icon={<FaEnvelope size={18} />}
             />
 
             <PhoneInputField

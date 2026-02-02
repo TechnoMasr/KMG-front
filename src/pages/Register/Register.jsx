@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 
-import { User, Mail, Lock } from "lucide-react";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { z } from "zod";
 import { Link, useNavigate } from "react-router";
 
@@ -87,7 +87,7 @@ const Register = () => {
             name="name"
             label={t("register.name")}
             placeholder={t("register.namePlaceholder")}
-            icon={<User size={18} />}
+            icon={<FaUser size={18} />}
           />
 
           <MainInput
@@ -95,7 +95,7 @@ const Register = () => {
             name="email"
             label={t("register.email")}
             placeholder={t("register.emailPlaceholder")}
-            icon={<Mail size={18} />}
+            icon={<FaEnvelope size={18} />}
           />
 
           <MainInput
@@ -103,7 +103,7 @@ const Register = () => {
             name="password"
             label={t("register.password")}
             type="password"
-            icon={<Lock size={18} />}
+            icon={<FaLock size={18} />}
           />
 
           <MainInput
@@ -111,7 +111,7 @@ const Register = () => {
             name="password_confirmation"
             label={t("register.passwordConfirmation")}
             type="password"
-            icon={<Lock size={18} />}
+            icon={<FaLock size={18} />}
           />
 
           <Button type="submit" className="w-full" disabled={isPending}>

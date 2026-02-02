@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 
-import { Mail } from "lucide-react";
+import { FaEnvelope } from "react-icons/fa";
 import { Link } from "react-router";
 import { z } from "zod";
 import { sendOtp } from "@/services/forgotPasswordServices";
@@ -61,7 +61,7 @@ const CheckEmail = ({ goNext, setParentData }) => {
             name="email"
             label={t("checkEmail.emailLabel")}
             placeholder={t("checkEmail.emailPlaceholder")}
-            icon={<Mail size={18} />}
+            icon={<FaEnvelope size={18} />}
           />
 
           <Button type="submit" className="w-full" disabled={isPending}>

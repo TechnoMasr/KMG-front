@@ -36,7 +36,7 @@ const HeadSection = ({ data }) => {
       {/* Overlay */}
       {isUnavailable && <UnavailableLayout />}
 
-      <div className="h-[300px] md:h-[400px] bg-accent overflow-hidden rounded-2xl">
+      <div className="aspect-video bg-accent overflow-hidden rounded-2xl">
         <img
           loading="lazy"
           src={data?.offer_image}

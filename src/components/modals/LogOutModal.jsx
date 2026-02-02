@@ -12,7 +12,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { closeModal } from "@/store/modals/modalsSlice";
-import { Loader2Icon } from "lucide-react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const LogOutModal = () => {
   const { t } = useTranslation();
@@ -49,11 +49,13 @@ const LogOutModal = () => {
 
         <DialogFooter>
           <Button
-            className="flex-1"
+            className="flex-1 flex items-center justify-center gap-2"
             disabled={logOutLoading}
             onClick={handleLogout}
           >
-            {logOutLoading && <Loader2Icon className="size-4 animate-spin" />}
+            {logOutLoading && (
+              <AiOutlineLoading3Quarters className="w-4 h-4 animate-spin" />
+            )}
             {t("logOutModal.logout")}
           </Button>
 

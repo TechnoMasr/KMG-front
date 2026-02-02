@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Search, X } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -11,6 +10,8 @@ import {
 import { getSearch } from "@/services/mainServices";
 import { useNavigate } from "react-router";
 import { useTranslation } from "react-i18next";
+import { IoSearchOutline } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
 
 const HeaderSearch = () => {
   const { t } = useTranslation();
@@ -68,13 +69,13 @@ const HeaderSearch = () => {
           className="rounded-full lg:hidden"
           onClick={() => setIsModalOpen(true)}
         >
-          <Search />
+          <IoSearchOutline />
         </Button>
 
         {/* Desktop Search */}
         <div className="hidden lg:block relative px-8">
           <div className="w-full flex items-center gap-2 bg-input py-2 px-4 rounded-full">
-            <Search className="text-gray-500" />
+            <IoSearchOutline className="text-gray-500" />
             <input
               placeholder={t("headerSearch.placeholder")}
               value={searchTerm}
@@ -86,7 +87,7 @@ const HeaderSearch = () => {
                 onClick={clearSearch}
                 className="text-gray-500 hover:text-gray-700"
               >
-                <X size={18} />
+                <IoMdClose />
               </button>
             )}
           </div>
@@ -113,7 +114,7 @@ const HeaderSearch = () => {
           </DialogHeader>
           <div className="space-y-4">
             <div className="flex items-center gap-2 bg-input py-2 px-4 rounded-full">
-              <Search className="text-gray-500" />
+              <IoSearchOutline className="text-gray-500" />
               <input
                 placeholder={t("headerSearch.placeholder")}
                 value={searchTerm}
@@ -126,7 +127,7 @@ const HeaderSearch = () => {
                   onClick={clearSearch}
                   className="text-gray-500 hover:text-gray-700"
                 >
-                  <X size={18} />
+                  <IoMdClose />
                 </button>
               )}
             </div>

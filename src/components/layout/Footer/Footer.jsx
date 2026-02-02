@@ -107,7 +107,10 @@ const Footer = () => {
       <section className="flex flex-col items-center gap-6 py-4">
         <div className="flex items-center gap-4">
           {footerData?.payment_platforms.map((item, index) => (
-            <div key={index} className="w-12 h-8 overflow-hidden rounded">
+            <div
+              key={index}
+              className="w-12 aspect-video overflow-hidden rounded"
+            >
               <img
                 loading="lazy"
                 src={item.image}
