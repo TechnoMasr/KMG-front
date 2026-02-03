@@ -195,3 +195,24 @@ input::-webkit-inner-spin-button {
     }
   }
 }
+
+.swiper-slide-thumb-active {
+  opacity: 1 !important;
+}
+
+.swiper-thumbs .swiper-slide {
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.swiper-thumbs .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.swiper-thumbs .swiper-slide-thumb-active div {
+  border-color: var(--primary);
+}
+
+.swiper-navigation-icon {
+  color: var(--primary);
+}

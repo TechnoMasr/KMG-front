@@ -7,14 +7,23 @@ import { useNavigate } from "react-router";
 import useRequireAuth from "@/hooks/useRequireAuth";
 import UnavailableLayout from "@/components/common/UnavailableLayout";
 
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Thumbs } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+import { useSelector } from "react-redux";
+
 const HeadSection = ({ data }) => {
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
+  const { lang } = useSelector((state) => state.language);
 
   const isUnavailable = data.items_count === 0;
 
   const navigate = useNavigate();
   const { t } = useTranslation();
-
   const requireAuth = useRequireAuth();
 
   const handlePayment = (product) => {
@@ -31,20 +40,71 @@ const HeadSection = ({ data }) => {
     });
   };
 
+  const images = [
+    data?.offer_image,
+    data?.offer_image,
+    data?.offer_image,
+    data?.offer_image,
+    data?.offer_image,
+    data?.offer_image,
+  ];
+
   return (
     <div className="card lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 relative overflow-hidden">
       {/* Overlay */}
       {isUnavailable && <UnavailableLayout />}
 
-      <div className="aspect-video bg-accent overflow-hidden rounded-2xl">
-        <img
-          loading="lazy"
-          src={data?.offer_image}
-          alt={data?.title}
-          className="w-full h-full object-cover"
-        />
+      {/* ================== IMAGE SLIDER ================== */}
+      <div className="w-full">
+        {/* Main Slider */}
+        <Swiper
+          dir={lang === "ar" ? "rtl" : "ltr"}
+          modules={[Navigation, Thumbs]}
+          navigation
+          thumbs={{ swiper: thumbsSwiper }}
+          className="rounded-2xl overflow-hidden"
+        >
+          {images?.map((img, index) => (
+            <SwiperSlide key={index}>
+              <div className="aspect-video bg-accent overflow-hidden group">
+                <img
+                  src={img}
+                  alt={`${data?.title}-${index}`}
+                  className="w-full h-full object-cover transition duration-500 group-hover:scale-105"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Thumbnails */}
+        <Swiper
+          dir={lang === "ar" ? "rtl" : "ltr"}
+          onSwiper={setThumbsSwiper}
+          spaceBetween={10}
+          watchSlidesProgress
+          breakpoints={{
+            0: { slidesPerView: images?.length > 3 ? 2.7 : images?.length },
+            640: { slidesPerView: images?.length > 4 ? 3.7 : images?.length },
+            1280: { slidesPerView: images?.length > 5 ? 4.7 : images?.length },
+          }}
+          className="mt-4 swiper-thumbs"
+        >
+          {images?.map((img, index) => (
+            <SwiperSlide key={index}>
+              <div className="cursor-pointer rounded-xl overflow-hidden border-2 border-transparent transition-all duration-300">
+                <img
+                  src={img}
+                  alt={`thumb-${index}`}
+                  className="w-full h-20 object-cover"
+                />
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
 
+      {/* ================== CONTENT ================== */}
       <div className="flex flex-col gap-4 lg:gap-6">
         <h2 className="text-lg lg:text-2xl font-bold">{data?.title}</h2>
 

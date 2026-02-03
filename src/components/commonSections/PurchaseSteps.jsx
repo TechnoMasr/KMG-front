@@ -17,7 +17,7 @@ const PurchaseSteps = () => {
     return <PurchaseStepsSkeleton />;
   }
 
-  if (!purchaseStepsData?.length) {
+  if (!purchaseStepsData?.length || purchaseStepsData.length === 0) {
     return null;
   }
 
