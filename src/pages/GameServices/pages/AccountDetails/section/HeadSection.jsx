@@ -40,15 +40,6 @@ const HeadSection = ({ data }) => {
     });
   };
 
-  const images = [
-    data?.offer_image,
-    data?.offer_image,
-    data?.offer_image,
-    data?.offer_image,
-    data?.offer_image,
-    data?.offer_image,
-  ];
-
   return (
     <div className="card lg:p-8 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-8 relative overflow-hidden">
       {/* Overlay */}
@@ -64,7 +55,7 @@ const HeadSection = ({ data }) => {
           thumbs={{ swiper: thumbsSwiper }}
           className="rounded-2xl overflow-hidden"
         >
-          {images?.map((img, index) => (
+          {data?.images?.map((img, index) => (
             <SwiperSlide key={index}>
               <div className="aspect-video bg-accent overflow-hidden group">
                 <img
@@ -84,13 +75,22 @@ const HeadSection = ({ data }) => {
           spaceBetween={10}
           watchSlidesProgress
           breakpoints={{
-            0: { slidesPerView: images?.length > 3 ? 2.7 : images?.length },
-            640: { slidesPerView: images?.length > 4 ? 3.7 : images?.length },
-            1280: { slidesPerView: images?.length > 5 ? 4.7 : images?.length },
+            0: {
+              slidesPerView:
+                data?.images?.length > 3 ? 2.7 : data?.images?.length,
+            },
+            640: {
+              slidesPerView:
+                data?.images?.length > 4 ? 3.7 : data?.images?.length,
+            },
+            1280: {
+              slidesPerView:
+                data?.images?.length > 5 ? 4.7 : data?.images?.length,
+            },
           }}
           className="mt-4 swiper-thumbs"
         >
-          {images?.map((img, index) => (
+          {data?.images?.map((img, index) => (
             <SwiperSlide key={index}>
               <div className="cursor-pointer rounded-xl overflow-hidden border-2 border-transparent transition-all duration-300">
                 <img
