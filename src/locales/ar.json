@@ -249,7 +249,8 @@
     "subscriptions": "الإشتراكات",
     "topUp": "شحن رصيد",
     "giftCards": "كروت الهدايا",
-    "addGameToAccount": "إضافة لعبه للحساب"
+    "addGameToAccount": "إضافة لعبه للحساب",
+    "noGames": "لا توجد العاب لعرضها حالياً."
   },
 
   "testimonials": {

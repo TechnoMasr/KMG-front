@@ -2,8 +2,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const ServicesSectionSkeleton = () => {
   return (
-    <section className="container xl:max-w-7xl sectionPadding">
-      <div className="grid grid-cols-1 gap-4 lg:gap-8">
+    <section className="container sectionPadding">
+      <div className="xl:max-w-6xl mx-auto grid grid-cols-1 gap-4 lg:gap-8">
         {Array.from({ length: 4 }).map((_, idx) => (
           <div key={idx} className="flex flex-col gap-4 card">
             {/* Header */}
@@ -17,7 +17,7 @@ const ServicesSectionSkeleton = () => {
               {Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="flex gap-2 items-center rounded">
                   {/* Icon */}
-                  <Skeleton className="w-12 h-12 rounded" />
+                  <Skeleton className="w-22 h-22 rounded" />
 
                   {/* Text */}
                   <div className="flex flex-col gap-2">

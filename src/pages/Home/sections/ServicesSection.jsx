@@ -53,8 +53,8 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="container xl:max-w-7xl sectionPadding">
-      <div className="grid grid-cols-1 gap-4 lg:gap-8">
+    <section className="container sectionPadding">
+      <div className="xl:max-w-6xl mx-auto grid grid-cols-1 gap-4 lg:gap-8">
         {list.map((item) => (
           <div key={item.id} className="flex flex-col gap-4 card">
             <div className="flex items-center justify-between gap-4">
@@ -68,6 +68,12 @@ const ServicesSection = () => {
               </Link>
             </div>
 
+            {item.items.length === 0 && (
+              <p className="text-center text-muted-foreground py-1 px-4">
+                {t("servicesSection.noGames")}
+              </p>
+            )}
+
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
               {item.items.map((i) => (
                 <Link
@@ -75,7 +81,7 @@ const ServicesSection = () => {
                   key={i.id}
                   className="flex items-center gap-2 hover:bg-accent rounded transition"
                 >
-                  <div className="w-16 h-16 overflow-hidden rounded">
+                  <div className="w-22 h-22 overflow-hidden rounded">
                     <img
                       loading="lazy"
                       src={i.icon}
@@ -84,9 +90,9 @@ const ServicesSection = () => {
                     />
                   </div>
 
-                  <div>
-                    <h3 className="font-bold line-clamp-1">{i.name}</h3>
-                  </div>
+                  <h3 className="flex-1 font-bold line-clamp-2 text-lg lg:text-xl">
+                    {i.name}
+                  </h3>
                 </Link>
               ))}
             </div>

@@ -249,7 +249,8 @@
     "subscriptions": "Subscriptions",
     "topUp": "Top Up",
     "giftCards": "Gift Cards",
-    "addGameToAccount": "Add Game To Account"
+    "addGameToAccount": "Add Game To Account",
+    "noGames": "No games to display."
   },
 
   "testimonials": {

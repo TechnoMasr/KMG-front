@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
-  getCountries,
   getProductsMinutesRange,
   getSettings,
 } from "../../services/mainServices";
@@ -14,20 +13,6 @@ export const fetchSetting = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(
         error.response?.data.error_msg || "Failed to load settings",
-      );
-    }
-  },
-);
-
-export const fetchCountries = createAsyncThunk(
-  "country/fetchCountries",
-  async (_, { rejectWithValue }) => {
-    try {
-      const data = await getCountries();
-      return data;
-    } catch (error) {
-      return rejectWithValue(
-        error.response?.data.error_msg || "Failed to load countries",
       );
     }
   },
@@ -70,10 +55,6 @@ const appSetting = createSlice({
       .addCase(fetchSetting.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || "Something went wrong";
-      })
-
-      .addCase(fetchCountries.fulfilled, (state, action) => {
-        state.countries = action.payload;
       })
 
       .addCase(fetchProductsMinutesRange.fulfilled, (state, action) => {

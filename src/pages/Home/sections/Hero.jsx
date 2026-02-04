@@ -17,7 +17,7 @@ const Hero = ({ data = [], isLoading }) => {
 
   return (
     <section className="container py-6 lg:py-10">
-      <div className="w-full aspect-video rounded-xl md:rounded-3xl overflow-hidden relative">
+      <div className="w-full xl:max-w-6xl mx-auto aspect-video rounded-xl md:rounded-3xl overflow-hidden relative">
         <Swiper
           dir={lang === "ar" ? "rtl" : "ltr"}
           modules={[Pagination, Autoplay]}

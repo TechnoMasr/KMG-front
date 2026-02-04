@@ -5,18 +5,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { getPlatforms } from "@/services/mainServices";
+import { getCountries, getPlatforms } from "@/services/mainServices";
 
 const OffersFilter = ({ filters, setFilters, game }) => {
   const { t } = useTranslation();
-  const { countries } = useSelector((state) => state.setting);
 
-  const { data: platforms = [], isLoading } = useQuery({
+  const { data: platforms = [], isLoading: platformsLoading } = useQuery({
     queryKey: ["platforms" + game?.id + game?.service],
     queryFn: () => getPlatforms({ game_id: game?.id, service: game?.service }),
+    enabled: !!game,
+  });
+
+  const { data: countries = [], isLoading: countriesLoading } = useQuery({
+    queryKey: ["countries" + game?.id + game?.service],
+    queryFn: () => getCountries({ game_id: game?.id, service: game?.service }),
+    enabled: !!game,
   });
 
   const ALL_VALUE = "__all__";
@@ -37,9 +42,14 @@ const OffersFilter = ({ filters, setFilters, game }) => {
                 country_id: value === ALL_VALUE ? "" : value,
               }))
             }
+            disabled={platformsLoading}
           >
             <SelectTrigger className="rounded-full bg-input w-full cursor-pointer">
-              <SelectValue placeholder={t("OffersFilter.country")} />
+              <SelectValue
+                placeholder={
+                  countriesLoading ? t("loading") : t("OffersFilter.country")
+                }
+              />
             </SelectTrigger>
 
             <SelectContent>
@@ -68,12 +78,12 @@ const OffersFilter = ({ filters, setFilters, game }) => {
                 platform_id: value === ALL_VALUE ? "" : value,
               }))
             }
-            disabled={isLoading}
+            disabled={platformsLoading}
           >
             <SelectTrigger className="rounded-full bg-input w-full cursor-pointer">
               <SelectValue
                 placeholder={
-                  isLoading ? t("loading") : t("OffersFilter.platform")
+                  platformsLoading ? t("loading") : t("OffersFilter.platform")
                 }
               />
             </SelectTrigger>

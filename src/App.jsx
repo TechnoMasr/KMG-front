@@ -4,7 +4,7 @@ import Footer from "@/components/layout/Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProfileAct } from "@/store/profile/profileSlice";
-import { fetchCountries, fetchSetting } from "@/store/setting/setting";
+import { fetchSetting } from "@/store/setting/setting";
 import { Toaster } from "@/components/ui/sonner";
 import LogOutModal from "@/components/modals/LogOutModal";
 import RequiredLoginModal from "@/components/modals/RequiredLoginModal";
@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     dispatch(getProfileAct());
     dispatch(fetchSetting());
-    dispatch(fetchCountries());
   }, [dispatch]);
 
   useEffect(() => {
