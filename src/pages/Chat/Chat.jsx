@@ -45,6 +45,7 @@ const Chat = () => {
       return undefined;
     },
     initialPageParam: 1,
+    
   });
 
   // Flatten all messages from all pages

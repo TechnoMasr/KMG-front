@@ -21,6 +21,8 @@ const HeaderActions = () => {
     queryKey: ["unread-count", "chat"],
     queryFn: () => getUnreadCount("chat"),
     enabled: !!profile,
+    refetchInterval: 20000,
+    refetchIntervalInBackground: true,
   });
 
   const handleGoToChat = () => {
