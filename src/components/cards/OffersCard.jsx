@@ -19,12 +19,12 @@ const OffersCard = ({ item, onOfferClick, currentOffer }) => {
       {/* Overlay */}
       {isUnavailable && <UnavailableLayout />}
 
-      <div className="w-full aspect-video bg-accent rounded-md overflow-hidden">
+      <div className="w-full aspect-video rounded-md overflow-hidden">
         <img
           loading="lazy"
           src={item.image}
           alt={item.title}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-contain"
         />
       </div>
 

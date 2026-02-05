@@ -105,7 +105,7 @@ const Footer = () => {
   return (
     <footer className="bg-background container">
       <section className="flex flex-col items-center gap-6 py-4">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center flex-wrap gap-4">
           {footerData?.payment_platforms.map((item, index) => (
             <div
               key={index}
