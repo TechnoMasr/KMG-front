@@ -7,6 +7,7 @@ import SwiperNavigation from "@/components/common/SwiperNavigation";
 import { useSelector } from "react-redux";
 import TestimonialsSkeleton from "@/components/Loading/SkeletonLoading/TestimonialsSkeleton";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router";
 
 const DiscoverByPlatform = ({ data = [], isLoading }) => {
   const { lang } = useSelector((state) => state.language);
@@ -45,14 +46,14 @@ const DiscoverByPlatform = ({ data = [], isLoading }) => {
       >
         {data?.map((item) => (
           <SwiperSlide key={item.id}>
-            <div className="w-full aspect-video bg-background rounded-xl overflow-hidden">
+            <Link to={item.link} className="w-full inline-block aspect-video bg-background rounded-xl overflow-hidden">
               <img
                 loading="lazy"
                 src={item.image}
                 alt={item.name}
                 className="w-full h-full object-cover"
               />
-            </div>
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
