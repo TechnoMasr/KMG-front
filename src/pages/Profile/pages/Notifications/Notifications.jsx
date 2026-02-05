@@ -1,27 +1,50 @@
 import NotificationCard from "@/components/cards/NotificationCard";
 import EmptyDataSection from "@/components/commonSections/EmptyDataSection";
 import NotificationsSkeleton from "@/components/Loading/SkeletonLoading/NotificationsSkeleton";
+import { Button } from "@/components/ui/button";
 
-import { getNotifications } from "@/services/notificationsServices";
+import {
+  getNotifications,
+  readAllNotifications,
+} from "@/services/notificationsServices";
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 const Notifications = () => {
   const { t } = useTranslation();
+  const queryClient = useQueryClient();
 
   const { data: notifications, isLoading } = useQuery({
     queryKey: ["notifications"],
     queryFn: getNotifications,
   });
 
+  const { mutate: markAllAsRead, isPending } = useMutation({
+    mutationFn: readAllNotifications,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["notifications"] });
+      queryClient.invalidateQueries({ queryKey: ["unread-count"] });
+    },
+  });
+
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-2xl font-bold">{t("notifications.title")}</h2>
-        <p className="text-muted-foreground text-sm">
-          {t("notifications.subtitle")}
-        </p>
+      <div className="flex items-center justify-between">
+        <div>
+          <h2 className="text-2xl font-bold">{t("notifications.title")}</h2>
+          <p className="text-muted-foreground text-sm">
+            {t("notifications.subtitle")}
+          </p>
+        </div>
+
+        {notifications?.items?.length > 0 && (
+          <Button onClick={() => markAllAsRead()} disabled={isPending}>
+            {isPending
+              ? t("notifications.loading")
+              : t("notifications.markAllRead")}
+          </Button>
+        )}
       </div>
 
       {isLoading ? (

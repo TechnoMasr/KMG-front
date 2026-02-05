@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import NotificationsBadge from "@/components/common/NotificationsBadge";
 import { Link } from "react-router";
 import NotificationCard from "@/components/cards/NotificationCard";
+import useNotificationsPolling from "@/hooks/useNotificationsPolling";
 
 const NotificationsPopUp = () => {
   const [openNotifications, setOpenNotifications] = useState(false);
@@ -24,7 +25,7 @@ const NotificationsPopUp = () => {
   const { data: notifications, isLoading } = useQuery({
     queryKey: ["notifications"],
     queryFn: getNotifications,
-    enabled: openNotifications,
+    enabled: !!profile,
   });
 
   const { data: unreadNotifications = 0 } = useQuery({
@@ -32,6 +33,15 @@ const NotificationsPopUp = () => {
     queryFn: () => getUnreadCount("notification"),
     enabled: !!profile,
   });
+
+  // استخراج اخر id
+  const lastId =
+    notifications?.items && notifications.items.length > 0
+      ? notifications.items[0].id
+      : null;
+
+  // تشغيل polling
+  useNotificationsPolling({ lastId, profile });
 
   return (
     <Popover open={openNotifications} onOpenChange={setOpenNotifications}>
@@ -46,8 +56,8 @@ const NotificationsPopUp = () => {
         {isLoading ? (
           <NotificationsSkeleton />
         ) : notifications?.items?.length ? (
-          <div className="flex flex-col gap-2">
-            {notifications.items.map((notification) => (
+          <div className="flex flex-col gap-2 max-h-[400px] overflow-y-auto custom_scrollbar">
+            {notifications.items.slice(0, 5).map((notification) => (
               <NotificationCard
                 key={notification.id}
                 notification={notification}

@@ -2,7 +2,7 @@ import { readNotification } from "@/services/notificationsServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegBell } from "react-icons/fa";
 
-const NotificationCard = ({ notification, header = false }) => {
+const NotificationCard = ({ notification }) => {
   const queryClient = useQueryClient();
 
   const { mutate: markAsRead } = useMutation({

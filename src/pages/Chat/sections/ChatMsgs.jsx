@@ -201,7 +201,7 @@ const ChatMsgs = ({
   return (
     <div
       ref={containerRef}
-      className="flex-1 overflow-y-auto px-2 py-4 space-y-3 msgs_container"
+      className="flex-1 overflow-y-auto px-2 py-4 space-y-3 custom_scrollbar"
       onScroll={handleScroll}
     >
       {isLoadingMore && (

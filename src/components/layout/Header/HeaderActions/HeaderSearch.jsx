@@ -182,7 +182,7 @@ const SearchResults = ({
 
   return (
     <div
-      className={`mt-2 max-h-96 overflow-y-auto space-y-2 msgs_container ${mobile ? "" : "card"}`}
+      className={`mt-2 max-h-96 overflow-y-auto space-y-2 custom_scrollbar ${mobile ? "" : "card"}`}
     >
       {searchResults?.games?.map((game) => (
         <button

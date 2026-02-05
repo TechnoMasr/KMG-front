@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useSelector } from "react-redux";
 import HeroSkeleton from "@/components/Loading/SkeletonLoading/HeroSkeleton";
+import { Link } from "react-router";
 
 const Hero = ({ data = [], isLoading }) => {
   const { lang } = useSelector((state) => state.language);
@@ -26,16 +27,33 @@ const Hero = ({ data = [], isLoading }) => {
           pagination={{ clickable: true }}
           className="h-full hero-swiper"
         >
-          {data?.map((slide) => (
-            <SwiperSlide key={slide.id}>
-              <img
-                loading="lazy"
-                src={slide.web_image}
-                alt=""
-                className="w-full h-full object-cover"
-              />
-            </SwiperSlide>
-          ))}
+          {data?.map((slide) => {
+            const hasLink = Boolean(slide?.link);
+
+            const Wrapper = hasLink ? Link : "div";
+
+            const wrapperProps = hasLink
+              ? {
+                  to: slide.link,
+                  className: "w-full h-full block cursor-pointer",
+                }
+              : {
+                  className: "w-full h-full",
+                };
+
+            return (
+              <SwiperSlide key={slide.id}>
+                <Wrapper {...wrapperProps}>
+                  <img
+                    loading="lazy"
+                    src={slide.web_image}
+                    alt=""
+                    className="w-full h-full object-cover"
+                  />
+                </Wrapper>
+              </SwiperSlide>
+            );
+          })}
         </Swiper>
 
         {/* Scoped Styles */}

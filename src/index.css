@@ -160,7 +160,7 @@ input::-webkit-inner-spin-button {
     }
   }
 
-  .msgs_container {
+  .custom_scrollbar {
     &::-webkit-scrollbar {
       width: 6px;
     }

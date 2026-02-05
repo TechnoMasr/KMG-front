@@ -439,7 +439,9 @@
     "title": "Notifications",
     "subtitle": "Check your notifications",
 
-    "empty": "There are no notifications at the moment."
+    "empty": "There are no notifications at the moment.",
+    "markAllRead": "Read all",
+    "loading": "Loading..."
   },
 
   "orders": {
