@@ -39,7 +39,7 @@ const LanguageSwitcher = () => {
           </div>
         </SelectTrigger>
 
-        <SelectContent>
+        <SelectContent position="popper">
           <SelectItem value="ar" className="flex gap-2">
             العربية
           </SelectItem>

@@ -28,7 +28,7 @@ const PaymentList = ({ onPaymentClick, currentPayment }) => {
           <div
             key={item.id}
             onClick={() => onPaymentClick(item)}
-            className={`card flex flex-col w-[150px] items-center text-center gap-2 cursor-pointer hover:scale-102 duration-200 ${
+            className={`card flex flex-col w-[150px] mx-auto items-center text-center gap-2 cursor-pointer hover:scale-102 duration-200 ${
               item?.id === currentPayment?.id ? "border-primary border-2" : ""
             }`}
           >

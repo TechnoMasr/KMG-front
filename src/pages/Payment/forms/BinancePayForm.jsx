@@ -12,6 +12,7 @@ import { useState } from "react";
 import FormError from "@/components/form/FormError";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
+import MainInput from "@/components/form/MainInput";
 
 const BinancePayForm = ({ cancelPayment, currentPayment, state }) => {
   const { t } = useTranslation();
@@ -85,9 +86,14 @@ const BinancePayForm = ({ cancelPayment, currentPayment, state }) => {
         {currentPayment.binance_id && (
           <div className="flex flex-col gap-2">
             <p className="font-bold">{t("BinancePayForm.binanceId")}</p>
-            <span className="bg-muted p-2 rounded-lg">
+            <a
+              href={currentPayment.binance_id}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-muted p-2 rounded-lg hover:underline cursor-pointer"
+            >
               {currentPayment.binance_id}
-            </span>
+            </a>
           </div>
         )}
 

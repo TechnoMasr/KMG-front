@@ -86,9 +86,14 @@ const PaypalForm = ({ cancelPayment, currentPayment, state }) => {
         {currentPayment.link && (
           <div className="flex flex-col gap-2">
             <p className="font-bold">{t("PaypalForm.paypalLink")}</p>
-            <span className="bg-muted p-2 rounded-lg">
+            <a
+              href={currentPayment.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-muted p-2 rounded-lg hover:underline cursor-pointer"
+            >
               {currentPayment.link}
-            </span>
+            </a>
           </div>
         )}
 
