@@ -21,7 +21,7 @@ const PaymentModal = ({
   product_id,
   product_price,
   currency,
-  gift_code = false,
+  gift_code = true,
 }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
@@ -63,7 +63,7 @@ const PaymentModal = ({
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-lg">
         <DialogHeader className="text-center">
           <DialogTitle className="text-xl text-center">
             {t("PaymentModal.title")}
@@ -87,6 +87,7 @@ const PaymentModal = ({
 
             {gift_code && (
               <MainInput
+                type="textarea"
                 control={form.control}
                 name="gift_code"
                 label={t("PaymentModal.giftCode")}
