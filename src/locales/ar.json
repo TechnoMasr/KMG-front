@@ -22,10 +22,12 @@
     "title": "بيانات الحساب",
     "loginData": "بيانات الدخول",
     "password": "كلمة المرور",
-    "giftCode": "كود الهدية",
+    "backupCodes": "الأكواد الاحتياطية",
+    "backupCodePlaceholder": "أدخل الكود الاحتياطي",
+    "addCode": "إضافة كود",
+    "codeNumber": "كود",
     "save": "حفظ",
     "cancel": "تراجع",
-
     "validation": {
       "loginDataShort": "بيانات الدخول قصيرة",
       "passwordShort": "كلمة المرور قصيرة"

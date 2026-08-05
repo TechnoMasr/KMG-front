@@ -125,6 +125,23 @@ input::-webkit-inner-spin-button {
   --ring: oklch(0.708 0 0);
 }
 
+.custom_scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 999px;
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(93, 5, 95, 0.4);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50 font-[cairo] scroll-smooth;

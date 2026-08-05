@@ -68,8 +68,15 @@ const VodafoneCashForm = ({ cancelPayment, currentPayment, state }) => {
     // state data
     formData.append("product_id", state.product_id);
     formData.append("login_data", state.login_data);
-    formData.append("gift_code", state.gift_code);
     formData.append("password", state.password);
+
+    // formData.append("gift_code", state.gift_code);
+    // إرسال الأكواد الاحتياطية كـ Array
+    if (Array.isArray(state?.backup_codes) && state.backup_codes.length > 0) {
+      state.backup_codes.forEach((code) => {
+        formData.append("backup_codes[]", code); // أو "backup_codes" بدون أقواس حسب تجهيز الـ Backend
+      });
+    }
 
     mutate(formData);
   };

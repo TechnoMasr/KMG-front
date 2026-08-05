@@ -22,10 +22,12 @@
     "title": "Account Information",
     "loginData": "Login Data",
     "password": "Password",
-    "giftCode": "Gift Code",
+    "backupCodes": "Backup codes",
+    "backupCodePlaceholder": "Enter backup code",
+    "addCode": "Add Code",
+    "codeNumber": "Code",
     "save": "Save",
     "cancel": "Cancel",
-
     "validation": {
       "loginDataShort": "Login data is too short",
       "passwordShort": "Password is too short"
