@@ -1,5 +1,6 @@
 import AuthContainer from "@/components/form/AuthContainer";
 import MainInput from "@/components/form/MainInput";
+import PhoneInputField from "@/components/form/PhoneInputField"; // <-- استدعاء المكون
 import FormError from "@/components/form/FormError";
 
 import { Form } from "@/components/ui/form";
@@ -18,6 +19,7 @@ import { useDispatch } from "react-redux";
 import { getProfileAct } from "@/store/profile/profileSlice";
 
 import { useTranslation } from "react-i18next";
+import { isValidPhoneNumber } from "react-phone-number-input";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -28,6 +30,11 @@ const Register = () => {
     .object({
       name: z.string().min(3, t("register.errors.nameShort")),
       email: z.string().email(t("register.errors.emailInvalid")),
+      whatsapp: z
+        .string({ required_error: t("register.errors.whatsappInvalid") })
+        .refine((val) => val && isValidPhoneNumber(val), {
+          message: t("register.errors.whatsappInvalid"),
+        }),
       password: z.string().min(6, t("register.errors.passwordShort")),
       password_confirmation: z
         .string()
@@ -43,6 +50,7 @@ const Register = () => {
     defaultValues: {
       name: "",
       email: "",
+      whatsapp: "",
       password: "",
       password_confirmation: "",
     },
@@ -67,6 +75,7 @@ const Register = () => {
     register({
       name: data.name,
       email: data.email,
+      whatsapp: data.whatsapp, // <-- إرساله للـ Backend باسم whatsapp
       password: data.password,
       password_confirmation: data.password_confirmation,
     });
@@ -96,6 +105,13 @@ const Register = () => {
             label={t("register.email")}
             placeholder={t("register.emailPlaceholder")}
             icon={<FaEnvelope size={18} />}
+          />
+
+          {/* حقل الواتساب الجديد */}
+          <PhoneInputField
+            control={form.control}
+            name="whatsapp"
+            label={t("register.whatsapp")}
           />
 
           <MainInput

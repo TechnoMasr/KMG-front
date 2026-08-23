@@ -13,9 +13,11 @@ import { useState } from "react";
 import FormError from "@/components/form/FormError";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 const PaypalForm = ({ cancelPayment, currentPayment, state }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState("");
 
   // schema
@@ -38,7 +40,8 @@ const PaypalForm = ({ cancelPayment, currentPayment, state }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: createOrder,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      navigate(`/profile/order-tracker/${data.id}`);
       toast.success(t("PaypalForm.paymentConfirmed"));
       setErrorMsg("");
       form.reset();
@@ -97,7 +100,7 @@ const PaypalForm = ({ cancelPayment, currentPayment, state }) => {
               href={currentPayment.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-muted p-2 rounded-lg hover:underline cursor-pointer"
+              className="bg-muted p-2 rounded-lg hover:underline cursor-pointer word-break-all break-all"
             >
               {currentPayment.link}
             </a>

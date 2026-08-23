@@ -532,10 +532,31 @@
     },
     "buttons": {
       "chat": "مراسلة",
-      "details": "تفاصيل الطلب"
+      "details": "تفاصيل الطلب",
+      "track": "تتبع الطلب"
     },
     "status": {
       "pending": "قيد الانتظار",
+      "completed": "مكتمل"
+    }
+  },
+
+  "orderTracker": {
+    "orderCode": "رقم الطلب",
+    "createdAt": "تاريخ الطلب",
+    "statusTitle": "حالة الطلب",
+    "cancelled": "تم إلغاء هذا الطلب",
+    "estimatedTime": "وقت التسليم المتوقع:",
+    "detailsTitle": "بيانات ومعلومات الطلب",
+    "summary": "ملخص الفاتورة",
+    "itemPrice": "سعر المنتج",
+    "serviceFee": "رسوم الخدمة",
+    "total": "الإجمالي",
+    "paymentMethod": "طريقة الدفع",
+    "notFound": "لم يتم العثور على الطلب",
+    "statuses": {
+      "pending": "قيد الانتظار",
+      "processing": "قيد التنفيذ",
       "completed": "مكتمل"
     }
   },
@@ -549,6 +570,8 @@
     "emailPlaceholder": "example@email.com",
     "password": "كلمة المرور",
     "passwordConfirmation": "تأكيد كلمة المرور",
+    "whatsapp": "واتساب",
+    "whatsappPlaceholder": "أدخل رقم الواتساب",
     "submit": "إنشاء حساب",
     "submitting": "جاري إنشاء الحساب...",
     "haveAccount": "لديك حساب؟",
@@ -559,7 +582,8 @@
       "passwordShort": "كلمة المرور قصيرة",
       "passwordConfirmationRequired": "تأكيد كلمة المرور مطلوب",
       "passwordMismatch": "كلمتا المرور غير متطابقتين",
-      "generic": "حدث خطأ ما"
+      "generic": "حدث خطأ ما",
+      "whatsappInvalid": "رقم الواتساب غير صحيح"
     }
   },
 

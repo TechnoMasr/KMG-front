@@ -31,6 +31,7 @@ const Account = React.lazy(
   () => import("../pages/Profile/pages/Account/Account"),
 );
 const Orders = React.lazy(() => import("../pages/Profile/pages/Orders/Orders"));
+const OrderTracker = React.lazy(() => import("../pages/Profile/pages/Orders/OrderTracker"));
 const Notifications = React.lazy(
   () => import("../pages/Profile/pages/Notifications/Notifications"),
 );
@@ -79,6 +80,7 @@ const router = createBrowserRouter([
             children: [
               { index: true, element: <Account /> },
               { path: "orders", element: <Orders /> },
+              { path: "order-tracker/:id", element: <OrderTracker /> },
               { path: "notifications", element: <Notifications /> },
             ],
           },

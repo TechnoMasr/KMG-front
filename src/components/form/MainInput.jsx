@@ -40,7 +40,11 @@ const MainInput = ({
         id={name}
         render={({ field }) => (
           <FormItem>
-            {label && <FormLabel htmlFor={name}>{label}</FormLabel>}
+            {label && (
+              <FormLabel htmlFor={name} className="mb-1">
+                {label}
+              </FormLabel>
+            )}
 
             <FormControl>
               <div>
@@ -49,6 +53,7 @@ const MainInput = ({
                     {...field}
                     placeholder={placeholder}
                     disabled={disabled}
+                    className="min-h-20 max-h-[150px] focus-visible:border-primary focus-visible:ring-primary/50"
                   />
                 )}
 
@@ -58,7 +63,9 @@ const MainInput = ({
                     defaultValue={field.value}
                     disabled={disabled}
                   >
-                    <SelectTrigger>
+                    <SelectTrigger
+                      className={`focus-visible:border-primary focus-visible:ring-primary/50`}
+                    >
                       <SelectValue placeholder={placeholder} />
                     </SelectTrigger>
 
@@ -77,6 +84,7 @@ const MainInput = ({
                     id={name}
                     type="file"
                     disabled={disabled}
+                    className="focus-visible:border-primary focus-visible:ring-primary/50"
                     onChange={(e) => field.onChange(e.target.files?.[0])}
                   />
                 )}
@@ -103,7 +111,9 @@ const MainInput = ({
                         }
                         placeholder={placeholder}
                         disabled={disabled}
-                        className={`bg-muted rounded-full
+                        className={`bg-muted rounded-full focus-visible:border-primary focus-visible:ring-primary/50
+                        [&:-webkit-autofill]:[transition:background-color_9999s_ease-in-out_0s]
+                        [&:-webkit-autofill]:[-webkit-text-fill-color:var(--foreground)]
                         ${icon ? "ps-10" : ""} ${isPassword ? "pe-10" : ""}`}
                       />
 

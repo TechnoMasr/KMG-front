@@ -13,13 +13,13 @@ const OffersFilter = ({ filters, setFilters, game }) => {
   const { t } = useTranslation();
 
   const { data: platforms = [], isLoading: platformsLoading } = useQuery({
-    queryKey: ["platforms" + game?.id + game?.service],
+    queryKey: ["platforms", game?.id, game?.service],
     queryFn: () => getPlatforms({ game_id: game?.id, service: game?.service }),
     enabled: !!game,
   });
 
   const { data: countries = [], isLoading: countriesLoading } = useQuery({
-    queryKey: ["countries" + game?.id + game?.service],
+    queryKey: ["countries", game?.id, game?.service],
     queryFn: () => getCountries({ game_id: game?.id, service: game?.service }),
     enabled: !!game,
   });

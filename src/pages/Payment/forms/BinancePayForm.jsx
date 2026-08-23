@@ -13,9 +13,11 @@ import FormError from "@/components/form/FormError";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import MainInput from "@/components/form/MainInput";
+import { useNavigate } from "react-router";
 
 const BinancePayForm = ({ cancelPayment, currentPayment, state }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState("");
 
   // schema
@@ -39,7 +41,8 @@ const BinancePayForm = ({ cancelPayment, currentPayment, state }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: createOrder,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      navigate(`/profile/order-tracker/${data.id}`);
       toast.success(t("BinancePayForm.paymentConfirmed"));
       setErrorMsg("");
       form.reset();
@@ -97,7 +100,7 @@ const BinancePayForm = ({ cancelPayment, currentPayment, state }) => {
               href={currentPayment.binance_id}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-muted p-2 rounded-lg hover:underline cursor-pointer"
+              className="bg-muted p-2 rounded-lg hover:underline cursor-pointer word-break-all break-all"
             >
               {currentPayment.binance_id}
             </a>

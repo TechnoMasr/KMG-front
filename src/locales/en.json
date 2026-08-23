@@ -532,10 +532,31 @@
     },
     "buttons": {
       "chat": "Chat",
-      "details": "Order Details"
+      "details": "Order Details",
+      "track": "Track Order"
     },
     "status": {
       "pending": "Pending",
+      "completed": "Completed"
+    }
+  },
+
+  "orderTracker": {
+    "orderCode": "Order Code",
+    "createdAt": "Order Date",
+    "statusTitle": "Order Status",
+    "cancelled": "This order has been cancelled",
+    "estimatedTime": "Estimated Delivery Time:",
+    "detailsTitle": "Order Details & Information",
+    "summary": "Order Summary",
+    "itemPrice": "Item Price",
+    "serviceFee": "Service Fee",
+    "total": "Total",
+    "paymentMethod": "Payment Method",
+    "notFound": "Order not found",
+    "statuses": {
+      "pending": "Pending",
+      "processing": "Processing",
       "completed": "Completed"
     }
   },
@@ -549,6 +570,8 @@
     "emailPlaceholder": "example@email.com",
     "password": "Password",
     "passwordConfirmation": "Confirm Password",
+    "whatsapp": "WhatsApp",
+    "whatsappPlaceholder": "Enter WhatsApp number",
     "submit": "Create Account",
     "submitting": "Creating account...",
     "haveAccount": "Already have an account?",
@@ -559,7 +582,8 @@
       "passwordShort": "Password is too short",
       "passwordConfirmationRequired": "Password confirmation is required",
       "passwordMismatch": "Passwords do not match",
-      "generic": "Something went wrong"
+      "generic": "Something went wrong",
+      "whatsappInvalid": "Invalid WhatsApp number"
     }
   },
 

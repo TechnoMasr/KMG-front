@@ -17,7 +17,7 @@ const DetailsModal = ({ order_id, open, onClose }) => {
   const { lang } = useSelector((state) => state.language);
 
   const { data: orderDetails, isLoading } = useQuery({
-    queryKey: ["order-details" + order_id],
+    queryKey: ["order-details", order_id],
     queryFn: () => getSingleOrder(order_id),
     enabled: open,
   });

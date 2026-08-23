@@ -78,7 +78,9 @@ const ContactUsModal = () => {
 
   return (
     <Dialog open={contactUsModal} onOpenChange={onClose}>
-      <DialogContent>
+      <DialogContent
+        className={`max-h-[90vh] overflow-y-auto custom_scrollbar`}
+      >
         <DialogHeader>
           <DialogTitle className="text-center">
             {t("ContactUsModal.title")}

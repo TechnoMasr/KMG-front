@@ -233,3 +233,32 @@ input::-webkit-inner-spin-button {
 .swiper-navigation-icon {
   color: var(--primary);
 }
+
+/* phone input */
+.phone-input-wrapper {
+  @apply flex items-center border border-input rounded-full bg-muted
+  px-2 h-9 transition-[color,box-shadow];
+}
+
+.phone-input-wrapper:focus-within {
+  @apply border-primary ring-primary/50 ring-[3px];
+}
+
+/* input */
+.phone-input-wrapper .PhoneInputInput {
+  @apply bg-transparent outline-none border-none w-full text-sm;
+}
+
+/* country select */
+.phone-input-wrapper .PhoneInputCountry {
+  @apply ms-2 flex items-center;
+}
+/* country select */
+.phone-input-wrapper .PhoneInputCountry {
+  @apply ms-2 flex items-center;
+}
+/* الأوبشنز جوه المنيو نفسها */
+.phone-input-wrapper .PhoneInputCountrySelect option {
+  color: #fff;
+  background-color: var(--muted) !important;
+}

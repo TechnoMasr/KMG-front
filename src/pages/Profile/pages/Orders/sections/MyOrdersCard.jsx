@@ -1,10 +1,10 @@
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { BsChatLeftText } from "react-icons/bs";
 import { Badge } from "@/components/ui/badge";
 import { FaCheckCircle, FaBook, FaPaperPlane } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { sendMsg } from "@/services/chatServices";
 
 import {
@@ -19,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import DetailsModal from "./DetailsModal";
 import { useTranslation } from "react-i18next";
+import { MdOutlineTimeline } from "react-icons/md";
 
 const MyOrdersCard = ({ order }) => {
   const { t } = useTranslation();
@@ -71,6 +72,10 @@ const MyOrdersCard = ({ order }) => {
             <p className="text-lg font-bold">
               {order?.product?.price} {order?.currency}
             </p>
+            <Badge variant={`outline`} className="gap-2 rounded-full">
+              <FaCheckCircle />
+              {order.status}
+            </Badge>
           </div>
         </div>
 
@@ -84,25 +89,28 @@ const MyOrdersCard = ({ order }) => {
           </Button>
 
           <div className="flex items-center gap-2">
-            <Badge variant={`outline`} className="gap-2 rounded-full">
-              <FaCheckCircle />
-              {order.status}
-            </Badge>
+            <Link
+              to={`/profile/order-tracker/${order.id}`}
+              className={`${buttonVariants({ variant: "secondary" })} rounded-full!`}
+            >
+              {t("myOrdersCard.buttons.track")}
+              <MdOutlineTimeline />
+            </Link>
 
-            <Button
+            {/* <Button
               onClick={() => setOpen(true)}
               variant="outline"
               className="gap-2 rounded-full"
             >
-              <FaBook />
               {t("myOrdersCard.buttons.details")}
-            </Button>
+              <FaBook />
+            </Button> */}
 
-            <DetailsModal
+            {/* <DetailsModal
               open={open}
               onClose={() => setOpen(false)}
               order_id={order.id}
-            />
+            /> */}
           </div>
         </div>
       </div>

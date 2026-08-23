@@ -13,9 +13,11 @@ import { useState } from "react";
 import FormError from "@/components/form/FormError";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
+import { useNavigate } from "react-router";
 
 const InstaPayForm = ({ cancelPayment, currentPayment, state }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState("");
 
   // schema
@@ -38,7 +40,8 @@ const InstaPayForm = ({ cancelPayment, currentPayment, state }) => {
 
   const { mutate, isPending } = useMutation({
     mutationFn: createOrder,
-    onSuccess: () => {
+    onSuccess: (data) => {
+      navigate(`/profile/order-tracker/${data.id}`);
       toast.success(t("InstaPayForm.paymentConfirmed"));
       setErrorMsg("");
       form.reset();
@@ -76,7 +79,7 @@ const InstaPayForm = ({ cancelPayment, currentPayment, state }) => {
     }
 
     mutate(formData);
-  };;
+  };
 
   return (
     <Form {...form}>
@@ -93,7 +96,7 @@ const InstaPayForm = ({ cancelPayment, currentPayment, state }) => {
         {currentPayment.username && (
           <div className="flex flex-col gap-2">
             <p className="font-bold">{t("InstaPayForm.username")}</p>
-            <span className="bg-muted p-2 rounded-lg">
+            <span className="bg-muted p-2 rounded-lg word-break-all break-all">
               {currentPayment.username}
             </span>
           </div>

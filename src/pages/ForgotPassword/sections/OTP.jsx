@@ -108,7 +108,7 @@ const OTP = ({ goNext, parentData, setParentData }) => {
                       <InputOTPSlot
                         key={i}
                         index={i}
-                        className="text-2xl w-12 h-12 border bg-white text-black"
+                        className="text-2xl w-12 h-12 border bg-white text-black data-[active=true]:border-primary data-[active=true]:ring-primary/50"
                       />
                     ))}
                   </InputOTPGroup>
