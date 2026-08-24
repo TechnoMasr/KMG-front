@@ -234,6 +234,8 @@
     "minutes": "دقايق",
     "totalPrice": "السعر الاجمالى",
     "serviceFee": "مصاريف الخدمة",
+    "priceBefore": "السعر قبل الخصم",
+    "discountedPercentage": "نسبة الخصم",
     "finalPrice": "السعر النهائى"
   },
 

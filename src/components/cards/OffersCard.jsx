@@ -13,7 +13,8 @@ const OffersCard = ({ item, onOfferClick, currentOffer }) => {
     <div
       key={item.id}
       onClick={handleChooseOffer}
-      className={`relative overflow-hidden card w-[150px] flex flex-col items-center text-center gap-2 cursor-pointer duration-200
+      className={`relative overflow-hidden card w-[150px] flex flex-col items-center
+      text-center gap-2 cursor-pointer hover:scale-102 duration-200
                 ${isCurrentOffer ? "border-primary border-2" : ""}`}
     >
       {/* Overlay */}
@@ -37,9 +38,29 @@ const OffersCard = ({ item, onOfferClick, currentOffer }) => {
         <p className="text-sm">{item.title}</p>
       )}
 
-      <span className="font-semibold pt-1 border-t mt-auto w-full">
+      {/* <span className="font-semibold pt-1 border-t mt-auto w-full">
         {item.price} {item.currency}
-      </span>
+      </span> */}
+
+      {/* منطقة الأسعار */}
+      <div className="pt-1 border-t mt-auto w-full flex flex-col items-center justify-center gap-0.5">
+        {item.price_before && (
+          <div className="flex items-center gap-1">
+            <span className="text-xs text-gray-400 line-through">
+              {item.price_before} {item.currency}
+            </span>
+
+            {item?.discount_percentage && (
+              <span className="text-xs text-gray-400">
+                ({item.discount_percentage}%)
+              </span>
+            )}
+          </div>
+        )}
+        <span>
+          {item.price} {item.currency}
+        </span>
+      </div>
     </div>
   );
 };

@@ -234,6 +234,8 @@
     "notSpecified": "Not Specified",
     "minutes": "mins",
     "serviceFee": "Service Fee",
+    "priceBefore": "Price Before",
+    "discountedPercentage": "Discounted Percentage",
     "finalPrice": "Final Price"
   },
 

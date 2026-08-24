@@ -76,7 +76,29 @@ const PaymentCard = ({ currentOffer, game }) => {
             ) : null}
           </li>
 
-          <li className="flex justify-between gap-2 py-1">
+          {currentOffer.price_before && (
+            <li className="flex justify-between gap-2 py-1 text-muted-foreground">
+              <p>{t("paymentCard.priceBefore")}</p>
+              <span>
+                {currentOffer.price_before} {currentOffer.currency}
+              </span>
+            </li>
+          )}
+
+          {currentOffer?.discount_percentage && (
+            <li className="flex justify-between gap-2 py-1 text-muted-foreground">
+              <p>{t("paymentCard.discountedPercentage")}</p>
+              <span>{currentOffer.discount_percentage}%</span>
+            </li>
+          )}
+
+          {currentOffer?.discount_percentage && (
+            <span className="text-sm text-gray-400">
+              ({currentOffer.discount_percentage}%)
+            </span>
+          )}
+
+          <li className="flex justify-between gap-2 py-1 text-lg">
             <p>{t("paymentCard.totalPrice")}</p>{" "}
             <span>
               {currentOffer.price} {currentOffer.currency}

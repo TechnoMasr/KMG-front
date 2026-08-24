@@ -57,10 +57,24 @@ const ServicesAccountCard = ({ item }) => {
       <h3 className="font-semibold line-clamp-2">{item.title}</h3>
 
       <div className="flex flex-col gap-1 text-sm">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center flex-wrap gap-2">
           <p className="text-lg font-bold">
             {item.price} {item.currency}
           </p>
+
+          {item.price_before && (
+            <div className="flex items-center gap-1">
+              <span className="text-sm text-gray-400 line-through">
+                {item.price_before} {item.currency}
+              </span>
+
+              {item?.discount_percentage && (
+                <span className="text-sm text-gray-400">
+                  ({item.discount_percentage}%)
+                </span>
+              )}
+            </div>
+          )}
         </div>
 
         {item.instant_delivery ? (

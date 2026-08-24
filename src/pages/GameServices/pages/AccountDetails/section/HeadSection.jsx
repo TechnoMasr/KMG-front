@@ -74,20 +74,7 @@ const HeadSection = ({ data }) => {
           onSwiper={setThumbsSwiper}
           spaceBetween={10}
           watchSlidesProgress
-          breakpoints={{
-            0: {
-              slidesPerView:
-                data?.images?.length > 3 ? 2.7 : data?.images?.length,
-            },
-            640: {
-              slidesPerView:
-                data?.images?.length > 4 ? 3.7 : data?.images?.length,
-            },
-            1280: {
-              slidesPerView:
-                data?.images?.length > 5 ? 4.7 : data?.images?.length,
-            },
-          }}
+          slidesPerView={3}
           className="mt-4 swiper-thumbs"
         >
           {data?.images?.map((img, index) => (
@@ -147,6 +134,20 @@ const HeadSection = ({ data }) => {
             <p className="text-4xl font-bold">
               {data.price} {data.currency}
             </p>
+
+            {data.price_before && (
+              <div className="flex items-center gap-2">
+                <span className="text-lg text-gray-400 line-through">
+                  {data.price_before} {data.currency}
+                </span>
+
+                {data?.discount_percentage && (
+                  <span className="text-lg text-gray-400">
+                    ({data.discount_percentage}%)
+                  </span>
+                )}
+              </div>
+            )}
           </div>
 
           <Button onClick={() => handlePayment(data)} className="w-full">
