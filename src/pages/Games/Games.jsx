@@ -14,11 +14,14 @@ const Games = () => {
   const { service } = useParams();
   const activeService = service || "accounts";
   const navigate = useNavigate();
-  const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = Number(searchParams.get("page") || 1);
+  const initialSearch = searchParams.get("search") || "";
+
+  // تعيين الحالة الابتدائية من الـ URL مباشرة
+  const [search, setSearch] = useState(initialSearch);
+  const [debouncedSearch, setDebouncedSearch] = useState(initialSearch);
 
   useEffect(() => {
     if (!service) {
@@ -26,14 +29,30 @@ const Games = () => {
     }
   }, [service, navigate]);
 
+  // تحديث الـ URL والـ Debounce فقط عند تغيير قيمة مدخل البحث
   useEffect(() => {
     const timer = setTimeout(() => {
       setDebouncedSearch(search);
-      setSearchParams({ page: 1, search });
+
+      // تحديث الـ URL فقط إذا كانت قيمة البحث ختلفة عن القيمة الموجودة في الـ URL
+      if (search !== initialSearch) {
+        const newParams = new URLSearchParams(searchParams);
+
+        if (search.trim()) {
+          newParams.set("search", search);
+        } else {
+          newParams.delete("search");
+        }
+
+        // إرجاع الصفحة إلى 1 عند البحث ومسح البرامتر لتنظيف الـ URL
+        newParams.delete("page");
+
+        setSearchParams(newParams, { replace: true });
+      }
     }, 500);
 
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [search, initialSearch, searchParams, setSearchParams]);
 
   const { data: gamesData, isLoading } = useQuery({
     queryKey: ["games", activeService, debouncedSearch, currentPage],
@@ -59,7 +78,15 @@ const Games = () => {
   ];
 
   const handlePageChange = (page) => {
-    setSearchParams({ page, search: debouncedSearch });
+    const newParams = new URLSearchParams(searchParams);
+
+    if (page === 1) {
+      newParams.delete("page");
+    } else {
+      newParams.set("page", page.toString());
+    }
+
+    setSearchParams(newParams); // بدون replace لإبقاء التصفح في الـ History
   };
 
   return (
@@ -68,7 +95,7 @@ const Games = () => {
 
       <section className="container py-6 lg:py-10 space-y-6 lg:space-y-10">
         <div className="w-full flex items-center gap-2 bg-input py-2 px-4 rounded-full">
-          <button>
+          <button type="button">
             <FaSearch />
           </button>
 
@@ -110,6 +137,7 @@ const Games = () => {
 
         <MainPagination
           totalPages={gamesData?.meta?.last_page || 1}
+          // totalPages={5}
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />

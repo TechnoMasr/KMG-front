@@ -200,7 +200,7 @@ input::-webkit-inner-spin-button {
     @apply flex items-center justify-center gap-2;
 
     .pagination-btn {
-      @apply w-8 h-8 flex items-center justify-center border rounded-md bg-input text-muted cursor-pointer hover:bg-primary/50 transition-all duration-200;
+      @apply w-8 h-8 flex items-center justify-center border rounded-md bg-input text-white cursor-pointer hover:bg-primary/50 transition-all duration-200;
     }
 
     .pagination-btn--disabled {

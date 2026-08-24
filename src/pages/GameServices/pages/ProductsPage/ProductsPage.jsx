@@ -12,9 +12,6 @@ const ProductsPage = ({
 }) => {
   const [currentOffer, setCurrentOffer] = useState(null);
 
-  if (!products || products.length === 0)
-    return <EmptyDataSection msg={"لا توجد عناصر لعرضها حالياً."} />;
-
   const handleOfferClick = (offer) => {
     if (currentOffer?.id === offer?.id) setCurrentOffer(null);
     else setCurrentOffer(offer);

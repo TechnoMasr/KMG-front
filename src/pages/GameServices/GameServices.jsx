@@ -5,7 +5,7 @@ import GamesNav from "@/components/commonSections/GamesNav";
 import Accounts from "./pages/Accounts/Accounts";
 import ProductsPage from "./pages/ProductsPage/ProductsPage";
 import OffersFilter from "./sections/OffersFilter";
-import { useState, useMemo, useEffect } from "react";
+import { useState, useMemo } from "react";
 import AccountsSkeleton from "@/components/Loading/SkeletonLoading/AccountsSkeleton";
 import { useTranslation } from "react-i18next";
 import SeoManager from "@/utils/SeoManager";
@@ -23,8 +23,9 @@ const GameServicesContent = () => {
   );
 
   const [filters, setFilters] = useState(defaultFilters);
-
   const [searchParams, setSearchParams] = useSearchParams();
+
+  // قراءة رقم الصفحة الحالي (افتراضياً 1 إذا لم يكن موجوداً)
   const currentPage = Number(searchParams.get("page") || 1);
 
   const { data: gameServicesData, isLoading } = useQuery({
@@ -39,9 +40,15 @@ const GameServicesContent = () => {
     enabled: !!service,
   });
 
-  useEffect(() => {
-    setSearchParams({ page: 1 });
-  }, [filters, setSearchParams]);
+  // إعادة ضبط الصفحة إلى 1 فقط عند تغيير الفلاتر (وباستخدام replace: true)
+  const handleFilterChange = (newFilters) => {
+    setFilters(newFilters);
+    if (searchParams.get("page")) {
+      const newParams = new URLSearchParams(searchParams);
+      newParams.delete("page");
+      setSearchParams(newParams, { replace: true });
+    }
+  };
 
   const game = gameServicesData?.extra?.game || null;
   const products = gameServicesData?.items || [];
@@ -85,7 +92,13 @@ const GameServicesContent = () => {
   );
 
   const handlePageChange = (page) => {
-    setSearchParams({ page });
+    const newParams = new URLSearchParams(searchParams);
+    if (page === 1) {
+      newParams.delete("page");
+    } else {
+      newParams.set("page", page);
+    }
+    setSearchParams(newParams); // بدون replace: true
   };
 
   return (
@@ -101,7 +114,11 @@ const GameServicesContent = () => {
       <article className="space-y-6 lg:space-y-10 pb-6">
         <GamesNav links={filteredLinks} game={game} isLoading={isLoading} />
 
-        <OffersFilter filters={filters} setFilters={setFilters} game={game} />
+        <OffersFilter
+          filters={filters}
+          setFilters={handleFilterChange}
+          game={game}
+        />
 
         {isLoading ? (
           <AccountsSkeleton />

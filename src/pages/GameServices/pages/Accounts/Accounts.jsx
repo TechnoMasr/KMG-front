@@ -16,6 +16,7 @@ const Accounts = ({ products = [], meta, currentPage, onPageChange }) => {
 
       <MainPagination
         totalPages={meta?.last_page || 1}
+        // totalPages={5}
         currentPage={currentPage}
         onPageChange={onPageChange}
       />

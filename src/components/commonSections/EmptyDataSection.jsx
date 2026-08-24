@@ -5,7 +5,7 @@ const EmptyDataSection = ({ msg }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex flex-col items-center justify-center gap-4 px-4 py-12">
+    <div className="flex flex-col items-center justify-center gap-2 p-4">
       <img
         loading="lazy"
         src={emptyIcon}
