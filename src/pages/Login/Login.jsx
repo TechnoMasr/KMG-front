@@ -100,7 +100,11 @@ const Login = () => {
 
           {error && (
             <FormError
-              errorMsg={error.response?.data?.message || t("auth.login.error")}
+              errorMsg={
+                error.response?.data?.message ||
+                error.message ||
+                t("auth.login.error")
+              }
             />
           )}
         </form>

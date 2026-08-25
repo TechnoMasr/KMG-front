@@ -14,7 +14,7 @@ const AccountDetails = () => {
   const { id } = useParams();
 
   const { data: productDetailsData, isLoading } = useQuery({
-    queryKey: ["product-details" , id],
+    queryKey: ["product-details", id],
     queryFn: () => getProductsDetails(id),
   });
 
@@ -27,8 +27,7 @@ const AccountDetails = () => {
     );
   }
 
-  if (!productDetailsData)
-    return <EmptyDataSection msg={"لا توجد بيانات لعرضها حالياً."} />;
+  if (!productDetailsData) return <EmptyDataSection />;
 
   return (
     <>

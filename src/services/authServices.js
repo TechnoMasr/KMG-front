@@ -4,6 +4,11 @@ import Cookies from "js-cookie";
 export const loginUser = async (formData) => {
   const { data } = await api.post("/auth/login", formData);
 
+  // التأكد من نجاح العملية قبل متابعة التخزين
+  if (!data?.success) {
+    throw new Error(data?.message );
+  }
+
   if (data?.data?.token) {
     Cookies.set("token", data?.data?.token, {
       expires: 7,

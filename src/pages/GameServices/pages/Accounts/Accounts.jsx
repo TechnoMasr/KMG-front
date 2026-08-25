@@ -3,8 +3,7 @@ import MainPagination from "@/components/common/MainPagination";
 import EmptyDataSection from "@/components/commonSections/EmptyDataSection";
 
 const Accounts = ({ products = [], meta, currentPage, onPageChange }) => {
-  if (!products || products.length === 0)
-    return <EmptyDataSection msg={"لا توجد حسابات لعرضها حالياً."} />;
+  if (!products || products.length === 0) return <EmptyDataSection />;
 
   return (
     <section className="container space-y-6">

@@ -3,20 +3,29 @@ import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { getProfileAct } from "@/store/profile/profileSlice";
+import { finishLoading, getProfileAct } from "@/store/profile/profileSlice";
 import { fetchSetting } from "@/store/setting/setting";
 import { Toaster } from "@/components/ui/sonner";
 import LogOutModal from "@/components/modals/LogOutModal";
 import RequiredLoginModal from "@/components/modals/RequiredLoginModal";
 import RequiredVerifyEmailModal from "@/components/modals/RequiredVerifyEmailModal";
 import ContactUsModal from "./components/modals/ContactUsModal";
+import Cookies from "js-cookie";
 
 function App() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
+  const token = Cookies.get("token");
 
   useEffect(() => {
-    dispatch(getProfileAct());
+    if (token) {
+      dispatch(getProfileAct());
+    } else {
+      dispatch(finishLoading());
+    }
+  }, [dispatch, token]);
+
+  useEffect(() => {
     dispatch(fetchSetting());
   }, [dispatch]);
 

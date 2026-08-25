@@ -48,6 +48,10 @@ const profileSlice = createSlice({
     clearProfile: (state) => {
       state.profile = null;
     },
+
+    finishLoading: (state) => {
+      state.loading = false;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -75,10 +79,11 @@ const profileSlice = createSlice({
       })
       .addCase(logoutAct.rejected, (state, action) => {
         state.logOutLoading = false;
+        state.profile = null;
         state.error = action.payload;
       });
   },
 });
 
-export const { addProfile, clearProfile } = profileSlice.actions;
+export const { addProfile, clearProfile, finishLoading } = profileSlice.actions;
 export default profileSlice.reducer;

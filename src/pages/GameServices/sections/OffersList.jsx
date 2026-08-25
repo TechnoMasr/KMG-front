@@ -13,7 +13,7 @@ const OffersList = ({
   return (
     <div className="space-y-6">
       {!offers || offers.length === 0 ? (
-        <EmptyDataSection msg={"لا توجد عناصر لعرضها حالياً."} />
+        <EmptyDataSection />
       ) : (
         <div className="flex flex-wrap justify-center gap-4 h-fit">
           {offers?.map((item) => (
