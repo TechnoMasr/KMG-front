@@ -18,7 +18,7 @@ import { z } from "zod";
 
 import { FaLock } from "react-icons/fa";
 import { useMutation } from "@tanstack/react-query";
-import { updateProfile } from "@/services/authServices";
+import { updateProfile } from "@/api/authServices";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";

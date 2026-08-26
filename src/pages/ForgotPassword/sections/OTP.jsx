@@ -18,7 +18,7 @@ import { Link } from "react-router";
 import { z } from "zod";
 
 import FormError from "@/components/form/FormError";
-import { verifyOtp, resendOtp } from "@/services/forgotPasswordServices";
+import { verifyOtp, resendOtp } from "@/api/forgotPasswordServices";
 import { useTranslation } from "react-i18next";
 
 const OTP = ({ goNext, parentData, setParentData }) => {

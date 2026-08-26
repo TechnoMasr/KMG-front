@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import {
   getNotifications,
   readAllNotifications,
-} from "@/services/notificationsServices";
+} from "@/api/notificationsServices";
 
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";

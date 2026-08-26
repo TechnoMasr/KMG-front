@@ -1,4 +1,4 @@
-import { readNotification } from "@/services/notificationsServices";
+import { readNotification } from "@/api/notificationsServices";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FaRegBell } from "react-icons/fa";
 

@@ -12,7 +12,7 @@ import { useMutation } from "@tanstack/react-query";
 import { FaEnvelope } from "react-icons/fa";
 import { Link } from "react-router";
 import { z } from "zod";
-import { sendOtp } from "@/services/forgotPasswordServices";
+import { sendOtp } from "@/api/forgotPasswordServices";
 import { useTranslation } from "react-i18next";
 
 const CheckEmail = ({ goNext, setParentData }) => {

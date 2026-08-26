@@ -17,7 +17,7 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInputField from "@/components/form/PhoneInputField";
 
 import { useMutation } from "@tanstack/react-query";
-import { getContactUs } from "@/services/mainServices";
+import { getContactUs } from "@/api/mainServices";
 import { useState } from "react";
 import FormError from "@/components/form/FormError";
 import { useTranslation } from "react-i18next";

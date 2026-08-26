@@ -12,10 +12,10 @@ import { useMutation } from "@tanstack/react-query";
 import { HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 import { Link, useNavigate } from "react-router";
 import { z } from "zod";
-import { loginUser } from "@/services/authServices";
+import { loginUser } from "@/api/authServices";
 import { useDispatch } from "react-redux";
-import { addProfile } from "@/store/profile/profileSlice";
 import { useTranslation } from "react-i18next";
+import { setCredentials } from "@/store/auth/authSlice";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -42,8 +42,12 @@ const Login = () => {
   } = useMutation({
     mutationFn: loginUser,
     onSuccess: (data) => {
-      navigate("/");
-      dispatch(addProfile({ ...data?.user, image: data?.user?.image_url }));
+      dispatch(
+        setCredentials({
+          user: data.user,
+        }),
+      );
+      navigate("/", { replace: true });
     },
   });
 

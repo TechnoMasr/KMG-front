@@ -1,7 +1,7 @@
 import ChatHeader from "./sections/ChatHeader";
 import ChatMsgs from "./sections/ChatMsgs";
 import ChatInput from "./sections/ChatInput";
-import { getMsgs, getNewMsgs, sendMsg } from "@/services/chatServices";
+import { getMsgs, getNewMsgs, sendMsg } from "@/api/chatServices";
 import {
   useInfiniteQuery,
   useQuery,
@@ -45,7 +45,6 @@ const Chat = () => {
       return undefined;
     },
     initialPageParam: 1,
-    
   });
 
   // Flatten all messages from all pages

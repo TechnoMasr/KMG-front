@@ -14,12 +14,12 @@ import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 import { z } from "zod";
 import { Link, useNavigate } from "react-router";
 
-import { registerUser } from "@/services/authServices";
+import { registerUser } from "@/api/authServices";
 import { useDispatch } from "react-redux";
-import { getProfileAct } from "@/store/profile/profileSlice";
 
 import { useTranslation } from "react-i18next";
 import { isValidPhoneNumber } from "react-phone-number-input";
+import { setCredentials } from "@/store/auth/authSlice";
 
 const Register = () => {
   const { t } = useTranslation();
@@ -62,12 +62,9 @@ const Register = () => {
     error,
   } = useMutation({
     mutationFn: registerUser,
-    onSuccess: () => {
-      dispatch(getProfileAct())
-        .unwrap()
-        .then(() => {
-          navigate("/verify-email", { replace: true });
-        });
+    onSuccess: (data) => {
+      dispatch(setCredentials({ user: data.user }));
+      navigate("/verify-email", { replace: true });
     },
   });
 

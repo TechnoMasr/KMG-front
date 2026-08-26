@@ -18,22 +18,16 @@ import { useNavigate } from "react-router";
 import { z } from "zod";
 
 import FormError from "@/components/form/FormError";
-import {
-  sendOtpVerifyEmail,
-  verifyEmail,
-} from "@/services/verifyEmailServices";
+import { sendOtpVerifyEmail, verifyEmail } from "@/api/verifyEmailServices";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  addProfile,
-  clearProfile,
-  logoutAct,
-} from "@/store/profile/profileSlice";
 
 import { useTranslation } from "react-i18next";
+import { logout, setCredentials } from "@/store/auth/authSlice";
+import { logoutUser } from "@/api/authServices";
 
 const VerifyEmail = () => {
   const { t } = useTranslation();
-  const { profile } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.auth);
 
   const otpSchema = z.object({
     otp: z.string().length(6, t("verifyEmail.otpError")),
@@ -47,7 +41,8 @@ const VerifyEmail = () => {
     defaultValues: { otp: "" },
   });
 
-  const [countdown, setCountdown] = useState(60);
+  const timerNum = 60;
+  const [countdown, setCountdown] = useState(timerNum);
 
   /* ================== Send OTP on Mount ================== */
   const [otpSent, setOtpSent] = useState(false);
@@ -55,16 +50,16 @@ const VerifyEmail = () => {
   const { mutate: sendOtpMutation, isPending: isSending } = useMutation({
     mutationFn: (email) => sendOtpVerifyEmail(email),
     onSuccess: () => {
-      setCountdown(60);
+      setCountdown(timerNum);
       setOtpSent(true);
     },
   });
 
   useEffect(() => {
-    if (profile?.email && !otpSent) {
-      sendOtpMutation(profile.email);
+    if (user?.email && !otpSent) {
+      sendOtpMutation(user.email);
     }
-  }, [profile?.email, otpSent]);
+  }, [user?.email, otpSent]);
 
   /* ================== Verify Email ================== */
   const {
@@ -74,7 +69,11 @@ const VerifyEmail = () => {
   } = useMutation({
     mutationFn: ({ email, code }) => verifyEmail({ email, code }),
     onSuccess: (data) => {
-      dispatch(addProfile(data?.user));
+      dispatch(
+        setCredentials({
+          user: data.user,
+        }),
+      );
       navigate("/", { replace: true });
     },
   });
@@ -90,23 +89,41 @@ const VerifyEmail = () => {
 
   /* ================== Handlers ================== */
   const onSubmit = (data) => {
-    verifyEmailMutation({ email: profile?.email, code: data.otp });
+    verifyEmailMutation({ email: user?.email, code: data.otp });
   };
 
   const handleResend = () => {
-    sendOtpMutation(profile?.email);
+    sendOtpMutation(user?.email);
   };
 
+  // Logout
+  const { mutate: logoutMutate, isPending: isLoggingOut } = useMutation({
+    mutationFn: logoutUser,
+    onSuccess: () => {
+      dispatch(logout());
+      const timer = setTimeout(() => {
+        navigate("/register", { replace: true });
+      }, 0);
+      return () => clearTimeout(timer);
+    },
+    onError: (err) => {
+      console.log("Logout Error:", err);
+      dispatch(logout());
+      const timer = setTimeout(() => {
+        navigate("/register", { replace: true });
+      }, 0);
+      return () => clearTimeout(timer);
+    },
+  });
+
   const handleBackToRegister = () => {
-    dispatch(logoutAct());
-    dispatch(clearProfile());
-    navigate(`/register`, { replace: true });
+    logoutMutate();
   };
 
   return (
     <AuthContainer
       title={t("verifyEmail.title")}
-      description={t("verifyEmail.description", { email: profile?.email })}
+      description={t("verifyEmail.description", { email: user?.email })}
     >
       <Form {...form}>
         <form
@@ -166,8 +183,9 @@ const VerifyEmail = () => {
             type="button"
             onClick={handleBackToRegister}
             className="text-sm hover:underline text-muted-foreground cursor-pointer"
+            disabled={isLoggingOut}
           >
-            {t("verifyEmail.back")}
+            {isLoggingOut ? t("loading") : t("verifyEmail.back")}
           </button>
 
           {error && (

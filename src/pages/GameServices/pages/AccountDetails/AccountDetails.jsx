@@ -3,7 +3,7 @@ import OfferDetails from "./section/OfferDetails";
 import FAQ from "@/components/commonSections/FAQ";
 import PurchaseSteps from "@/components/commonSections/PurchaseSteps";
 import { useParams } from "react-router";
-import { getProductsDetails } from "@/services/serviceServices";
+import { getProductsDetails } from "@/api/serviceServices";
 import { useQuery } from "@tanstack/react-query";
 import EmptyDataSection from "@/components/commonSections/EmptyDataSection";
 import OfferDetailsSkeleton from "@/components/Loading/SkeletonLoading/OfferDetailsSkeleton";

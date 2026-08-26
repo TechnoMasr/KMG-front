@@ -16,7 +16,7 @@ import { getPasswordStrength, strengthLabel } from "@/utils/PasswordStrength";
 
 import { z } from "zod";
 import { useNavigate } from "react-router";
-import { resetPassword } from "@/services/forgotPasswordServices";
+import { resetPassword } from "@/api/forgotPasswordServices";
 import { useTranslation } from "react-i18next";
 
 const ResetPasswordPage = ({ parentData }) => {

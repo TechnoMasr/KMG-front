@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { getSingleOrder } from "@/services/paymentsServices";
+import { getSingleOrder } from "@/api/paymentsServices";
 import { motion } from "framer-motion";
 import {
   FaClock,
@@ -245,7 +245,7 @@ const OrderTracker = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="text-end">
+          <div>
             <span className="text-xs text-muted-foreground block">
               {t("orderTracker.createdAt")}
             </span>
@@ -454,9 +454,9 @@ const OrderTracker = () => {
                 </div>
               )}
 
-              <div className="flex justify-between font-bold text-base text-foreground pt-2 border-t border-border">
+              <div className="flex justify-between font-bold text-lg text-foreground pt-2 border-t border-border">
                 <span>{t("orderTracker.total")}</span>
-                <span className="text-primary">
+                <span>
                   {orderDetails?.total_price} {orderDetails?.currency}
                 </span>
               </div>

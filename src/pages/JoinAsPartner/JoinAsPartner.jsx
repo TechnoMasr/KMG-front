@@ -1,4 +1,4 @@
-import { getPolicies } from "@/services/mainServices";
+import { getPolicies } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 import { Skeleton } from "@/components/ui/skeleton";
 

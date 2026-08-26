@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getNewNotifications } from "@/services/notificationsServices";
+import { getNewNotifications } from "@/api/notificationsServices";
 
 const useNotificationsPolling = ({ lastId, profile }) => {
   const queryClient = useQueryClient();

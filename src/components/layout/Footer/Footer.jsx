@@ -11,7 +11,7 @@ import {
 import { FaTelegramPlane } from "react-icons/fa";
 
 import { Link, useNavigate } from "react-router";
-import { getFooter } from "@/services/mainServices";
+import { getFooter } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 import FooterSkeleton from "@/components/Loading/SkeletonLoading/FooterSkeleton";
 import { useTranslation } from "react-i18next";

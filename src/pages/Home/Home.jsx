@@ -4,7 +4,7 @@ import Testimonials from "./sections/Testimonials";
 import OrderMethod from "./sections/OrderMethod";
 import DiscoverByPlatform from "./sections/DiscoverByPlatform";
 import { useQuery } from "@tanstack/react-query";
-import { getHome } from "@/services/homeServices";
+import { getHome } from "@/api/homeServices";
 import SeoManager from "@/utils/SeoManager";
 
 const Home = () => {

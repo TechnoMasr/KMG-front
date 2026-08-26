@@ -1,5 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { getPolicies } from "@/services/mainServices";
+import { getPolicies } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 
 const RefundPolicy = () => {

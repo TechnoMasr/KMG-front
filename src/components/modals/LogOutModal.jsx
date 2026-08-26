@@ -1,5 +1,4 @@
 import logoutIcon from "@/assets/icons/logout-icon.png";
-import { logoutAct } from "@/store/profile/profileSlice";
 import { useTranslation } from "react-i18next";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
@@ -13,21 +12,34 @@ import {
 } from "@/components/ui/dialog";
 import { closeModal } from "@/store/modals/modalsSlice";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { useMutation } from "@tanstack/react-query";
+import { logoutUser } from "@/api/authServices";
+import { logout } from "@/store/auth/authSlice";
 
 const LogOutModal = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const { logoutModal } = useSelector((state) => state.modals);
-  const { logOutLoading } = useSelector((state) => state.profile);
 
   const onClose = () => {
     dispatch(closeModal("logoutModal"));
   };
 
+  const { mutate: logoutMutate, isPending } = useMutation({
+    mutationFn: logoutUser,
+    onSuccess: () => {
+      dispatch(logout());
+      onClose();
+    },
+    onError: (err) => {
+      console.log("Logout Error:", err);
+      dispatch(logout());
+      onClose();
+    },
+  });
+
   const handleLogout = () => {
-    dispatch(logoutAct())
-      .unwrap()
-      .then(() => onClose());
+    logoutMutate();
   };
 
   return (
@@ -50,10 +62,10 @@ const LogOutModal = () => {
         <DialogFooter>
           <Button
             className="flex-1 flex items-center justify-center gap-2"
-            disabled={logOutLoading}
+            disabled={isPending}
             onClick={handleLogout}
           >
-            {logOutLoading && (
+            {isPending && (
               <AiOutlineLoading3Quarters className="w-4 h-4 animate-spin" />
             )}
             {t("logOutModal.logout")}
@@ -62,7 +74,7 @@ const LogOutModal = () => {
           <Button
             variant="outline"
             className="flex-1 rounded-full"
-            disabled={logOutLoading}
+            disabled={isPending}
             onClick={onClose}
           >
             {t("logOutModal.cancel")}

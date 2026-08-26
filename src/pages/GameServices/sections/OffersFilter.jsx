@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
-import { getCountries, getPlatforms } from "@/services/mainServices";
+import { getCountries, getPlatforms } from "@/api/mainServices";
 
 const OffersFilter = ({ filters, setFilters, game }) => {
   const { t } = useTranslation();

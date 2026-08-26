@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getProductsMinutesRange,
   getSettings,
-} from "../../services/mainServices";
+} from "@/api/mainServices";
 
 export const fetchSetting = createAsyncThunk(
   "setting/fetchSetting",

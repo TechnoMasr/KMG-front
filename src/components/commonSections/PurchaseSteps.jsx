@@ -1,5 +1,5 @@
 import SectionTitle from "@/components/common/SectionTitle";
-import { getPurchaseSteps } from "@/services/mainServices";
+import { getPurchaseSteps } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 import { FiSearch, FiCreditCard, FiPackage } from "react-icons/fi";
 import PurchaseStepsSkeleton from "../Loading/SkeletonLoading/PurchaseStepsSkeleton";

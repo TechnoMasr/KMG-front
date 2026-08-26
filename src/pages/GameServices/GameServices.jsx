@@ -1,4 +1,4 @@
-import { getProductsByGameAndService } from "@/services/serviceServices";
+import { getProductsByGameAndService } from "@/api/serviceServices";
 import { useQuery } from "@tanstack/react-query";
 import { useParams, useSearchParams } from "react-router";
 import GamesNav from "@/components/commonSections/GamesNav";

@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { getSingleOrder } from "@/services/paymentsServices";
+import { getSingleOrder } from "@/api/paymentsServices";
 import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";

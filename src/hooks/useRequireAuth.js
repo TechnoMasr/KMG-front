@@ -2,16 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModal } from "@/store/modals/modalsSlice";
 
 const useRequireAuth = () => {
-  const { profile } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const requireAuth = (onSuccess) => {
-    if (!profile) {
+    if (!user) {
       dispatch(openModal("requiredLoginModal"));
       return;
     }
 
-    if (!profile.is_verified) {
+    if (!user.is_verified) {
       dispatch(openModal("requiredVerifyEmailModal"));
       return;
     }

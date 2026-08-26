@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { getFaq } from "@/services/mainServices";
+import { getFaq } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
 import FAQSkeleton from "../Loading/SkeletonLoading/FAQSkeleton";
 

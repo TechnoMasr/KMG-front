@@ -17,23 +17,23 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import ChangePasswordModal from "./sections/ChangePasswordModal";
 
 import { useMutation } from "@tanstack/react-query";
-import { updateProfile } from "@/services/authServices";
+import { updateProfile } from "@/api/authServices";
 
 import { useDispatch, useSelector } from "react-redux";
 import { useRef, useState } from "react";
-import { addProfile } from "@/store/profile/profileSlice";
 import { Link } from "react-router";
 import { toast } from "sonner";
+import { setCredentials } from "@/store/auth/authSlice";
 
 const Account = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const { profile } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.auth);
 
   const [openChangePassword, setOpenChangePassword] = useState(false);
   const [errorMsg, setErrorMsg] = useState("");
-  const [avatar, setAvatar] = useState(profile?.image || null);
+  const [avatar, setAvatar] = useState(user?.image || null);
 
   const fileInputRef = useRef(null);
 
@@ -54,9 +54,9 @@ const Account = () => {
   const form = useForm({
     resolver: zodResolver(accountSchema),
     defaultValues: {
-      name: profile?.name || "",
-      email: profile?.email || "",
-      phone: profile?.phone || "",
+      name: user?.name || "",
+      email: user?.email || "",
+      phone: user?.phone || "",
     },
     mode: "onChange",
   });
@@ -65,7 +65,11 @@ const Account = () => {
   const updateProfileMutation = useMutation({
     mutationFn: updateProfile,
     onSuccess: (data) => {
-      dispatch(addProfile(data));
+      dispatch(
+        setCredentials({
+          user: { ...data },
+        }),
+      );
       setErrorMsg("");
       toast.success(t("account.messages.success"));
     },
@@ -93,8 +97,8 @@ const Account = () => {
       {/* ===== Header Card ===== */}
       <div className="card flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div className="flex items-center gap-2">
-          <UserAvatar name={profile?.name} image={profile?.image} size={80} />
-          <h2 className="text-2xl font-bold capitalize">{profile?.name}</h2>
+          <UserAvatar name={user?.name} image={user?.image} size={80} />
+          <h2 className="text-2xl font-bold capitalize">{user?.name}</h2>
         </div>
 
         <Link to="/chat" className="sm:w-[200px]">
@@ -121,7 +125,7 @@ const Account = () => {
               <FaPen size={16} />
             </div>
 
-            <UserAvatar name={profile?.name} image={avatar} size={100} />
+            <UserAvatar name={user?.name} image={avatar} size={100} />
 
             <input
               type="file"

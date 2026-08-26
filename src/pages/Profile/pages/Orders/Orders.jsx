@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/select";
 import { HiAdjustmentsHorizontal } from "react-icons/hi2";
 
-import { getOrders } from "@/services/paymentsServices";
+import { getOrders } from "@/api/paymentsServices";
 import { useQuery } from "@tanstack/react-query";
 import MyOrdersCard from "@/pages/Profile/pages/Orders/sections/MyOrdersCard";
 import { useState } from "react";

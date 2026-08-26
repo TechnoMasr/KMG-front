@@ -1,6 +1,6 @@
 import EmptyDataSection from "@/components/commonSections/EmptyDataSection";
 import PaymentListSkeleton from "@/components/Loading/SkeletonLoading/PaymentListSkeleton";
-import { getPaymentSettings } from "@/services/paymentsServices";
+import { getPaymentSettings } from "@/api/paymentsServices";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 

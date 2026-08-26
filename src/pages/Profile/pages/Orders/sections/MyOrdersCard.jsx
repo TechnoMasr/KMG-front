@@ -5,7 +5,7 @@ import { FaCheckCircle, FaBook, FaPaperPlane } from "react-icons/fa";
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router";
-import { sendMsg } from "@/services/chatServices";
+import { sendMsg } from "@/api/chatServices";
 
 import {
   Dialog,

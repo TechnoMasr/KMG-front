@@ -7,8 +7,8 @@ import { FaBell } from "react-icons/fa";
 import NotificationsSkeleton from "@/components/Loading/SkeletonLoading/NotificationsSkeleton";
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getNotifications } from "@/services/notificationsServices";
-import { getUnreadCount } from "@/services/mainServices";
+import { getNotifications } from "@/api/notificationsServices";
+import { getUnreadCount } from "@/api/mainServices";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Button } from "@/components/ui/button";
@@ -19,19 +19,19 @@ import useNotificationsPolling from "@/hooks/useNotificationsPolling";
 
 const NotificationsPopUp = () => {
   const [openNotifications, setOpenNotifications] = useState(false);
-  const { profile } = useSelector((state) => state.profile);
+  const { user } = useSelector((state) => state.auth);
   const { t } = useTranslation();
 
   const { data: notifications, isLoading } = useQuery({
     queryKey: ["notifications"],
     queryFn: getNotifications,
-    enabled: !!profile,
+    enabled: !!user,
   });
 
   const { data: unreadNotifications = 0 } = useQuery({
     queryKey: ["unread-count", "notification"],
     queryFn: () => getUnreadCount("notification"),
-    enabled: !!profile,
+    enabled: !!user,
   });
 
   // استخراج اخر id
@@ -41,7 +41,7 @@ const NotificationsPopUp = () => {
       : null;
 
   // تشغيل polling
-  useNotificationsPolling({ lastId, profile });
+  useNotificationsPolling({ lastId, user });
 
   return (
     <Popover open={openNotifications} onOpenChange={setOpenNotifications}>

@@ -1,5 +1,5 @@
 import ServicesSectionSkeleton from "@/components/Loading/SkeletonLoading/ServicesSectionSkeleton";
-import { getGamesByService } from "@/services/homeServices";
+import { getGamesByService } from "@/api/homeServices";
 import { useQuery } from "@tanstack/react-query";
 import { HiChevronLeft } from "react-icons/hi";
 import { Link } from "react-router";

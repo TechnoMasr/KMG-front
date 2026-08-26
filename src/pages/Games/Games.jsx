@@ -1,6 +1,6 @@
 import { FaSearch } from "react-icons/fa";
 import { Link, useNavigate, useParams, useSearchParams } from "react-router";
-import { getAllGamesByService } from "@/services/serviceServices";
+import { getAllGamesByService } from "@/api/serviceServices";
 import { useQuery } from "@tanstack/react-query";
 import GamesNav from "@/components/commonSections/GamesNav";
 import { useEffect, useState } from "react";
