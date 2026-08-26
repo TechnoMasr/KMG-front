@@ -1,7 +1,7 @@
 import { useState } from "react";
-import OffersList from "../../sections/OffersList";
+import OffersCard from "@/components/cards/OffersCard";
+import MainPagination from "@/components/common/MainPagination";
 import PaymentCard from "../../sections/PaymentCard";
-import EmptyDataSection from "@/components/commonSections/EmptyDataSection";
 
 const ProductsPage = ({
   game,
@@ -18,16 +18,30 @@ const ProductsPage = ({
   };
 
   return (
-    <article className="container py-6 lg:py-10 space-y-6">
+    <article className="container space-y-6">
       <section className="flex flex-col md:flex-row justify-center gap-8">
-        <OffersList
-          onOfferClick={handleOfferClick}
-          currentOffer={currentOffer}
-          offers={products}
-          meta={meta}
-          currentPage={currentPage}
-          onPageChange={onPageChange}
-        />
+        <div className="space-y-6">
+          {!products || products.length === 0 ? (
+            <EmptyDataSection />
+          ) : (
+            <div className="flex flex-wrap justify-center gap-4 h-fit">
+              {products?.map((item) => (
+                <OffersCard
+                  key={item.id}
+                  item={item}
+                  currentOffer={currentOffer}
+                  onOfferClick={handleOfferClick}
+                />
+              ))}
+            </div>
+          )}
+
+          <MainPagination
+            totalPages={meta?.last_page || 1}
+            currentPage={currentPage}
+            onPageChange={onPageChange}
+          />
+        </div>
 
         <PaymentCard currentOffer={currentOffer} game={game} />
       </section>

@@ -4,12 +4,12 @@ const OfferDetails = ({ data }) => {
       <h3 className="text-lg lg:text-2xl font-bold">وصف العرض</h3>
 
       <div
-        className="p-4 bg-accent rounded-2xl"
+        className="p-4 bg-accent rounded-2xl rich_content"
         dangerouslySetInnerHTML={{ __html: data?.offer_desc }}
       />
 
       <div
-        className="p-4 bg-accent rounded-2xl"
+        className="p-4 bg-accent rounded-2xl rich_content"
         dangerouslySetInnerHTML={{ __html: data?.offer_notes }}
       />
     </div>

@@ -31,19 +31,16 @@ const Account = React.lazy(
   () => import("../pages/Profile/pages/Account/Account"),
 );
 const Orders = React.lazy(() => import("../pages/Profile/pages/Orders/Orders"));
-const OrderTracker = React.lazy(() => import("../pages/Profile/pages/Orders/OrderTracker"));
+const OrderTracker = React.lazy(
+  () => import("../pages/Profile/pages/Orders/OrderTracker"),
+);
 const Notifications = React.lazy(
   () => import("../pages/Profile/pages/Notifications/Notifications"),
 );
 
 const Chat = React.lazy(() => import("../pages/Chat/Chat"));
 
-const RefundPolicy = React.lazy(
-  () => import("../pages/RefundPolicy/RefundPolicy"),
-);
-const JoinAsPartner = React.lazy(
-  () => import("../pages/JoinAsPartner/JoinAsPartner"),
-);
+const SitePages = React.lazy(() => import("../pages/SitePages/SitePages"));
 
 const Payment = React.lazy(() => import("../pages/Payment/Payment"));
 
@@ -103,8 +100,7 @@ const router = createBrowserRouter([
         ],
       },
 
-      { path: "/refund-policy", element: <RefundPolicy /> },
-      { path: "/join-as-partner", element: <JoinAsPartner /> },
+      { path: "/page/:slug", element: <SitePages /> },
 
       {
         element: <AuthGuard />,

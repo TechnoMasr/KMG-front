@@ -1,11 +1,14 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { getPolicies } from "@/api/mainServices";
 import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router";
 
-const RefundPolicy = () => {
-  const { data: policeData, isLoading } = useQuery({
-    queryKey: ["refund_policy"],
-    queryFn: () => getPolicies("refund_policy"),
+const SitePages = () => {
+  const { slug } = useParams();
+
+  const { data: sitePagesData, isLoading } = useQuery({
+    queryKey: ["site_pages", slug],
+    queryFn: () => getPolicies(slug),
   });
 
   if (isLoading) {
@@ -21,9 +24,12 @@ const RefundPolicy = () => {
 
   return (
     <article className="container py-6">
-      <div dangerouslySetInnerHTML={{ __html: policeData?.refund_policy }} />
+      <div
+        className="rich_content"
+        dangerouslySetInnerHTML={{ __html: sitePagesData?.[slug] }}
+      />
     </article>
   );
 };
 
-export default RefundPolicy;
+export default SitePages;

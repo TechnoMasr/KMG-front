@@ -214,7 +214,7 @@ const DetailsModal = ({ order_id, open, onClose }) => {
                         </h3>
 
                         <div
-                          className="card"
+                          className="card rich_content"
                           dangerouslySetInnerHTML={{ __html: item?.content }}
                         />
                       </div>

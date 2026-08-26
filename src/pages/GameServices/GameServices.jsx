@@ -9,6 +9,7 @@ import { useState, useMemo } from "react";
 import AccountsSkeleton from "@/components/Loading/SkeletonLoading/AccountsSkeleton";
 import { useTranslation } from "react-i18next";
 import SeoManager from "@/utils/SeoManager";
+import OffersSkeleton from "@/components/Loading/SkeletonLoading/OffersSkeleton";
 
 const GameServicesContent = () => {
   const { service, id } = useParams();
@@ -111,7 +112,7 @@ const GameServicesContent = () => {
         ogImage={game?.seo?.og_image}
       />
 
-      <article className="space-y-6 lg:space-y-10 pb-6">
+      <article className="space-y-6 lg:space-y-10 pb-6 lg:pb-10">
         <GamesNav links={filteredLinks} game={game} isLoading={isLoading} />
 
         <OffersFilter
@@ -121,7 +122,11 @@ const GameServicesContent = () => {
         />
 
         {isLoading ? (
-          <AccountsSkeleton />
+          service === "accounts" ? (
+            <AccountsSkeleton />
+          ) : (
+            <OffersSkeleton />
+          )
         ) : game?.service === "accounts" ? (
           <Accounts
             products={products}

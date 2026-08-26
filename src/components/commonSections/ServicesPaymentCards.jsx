@@ -89,7 +89,7 @@ const ServicesPaymentCards = ({ grid = 1 }) => {
 
           <DialogDescription asChild>
             <div
-              className="text-sm pt-4 text-white"
+              className="text-sm pt-4 text-white rich_content"
               dangerouslySetInnerHTML={{
                 __html: featureDescription,
               }}

@@ -37,17 +37,12 @@ const Footer = () => {
     {
       id: 1,
       name: t("footer.joinPartner"),
-      action: () => navigate("/join-as-partner"),
+      url: "join_as_partner",
     },
     {
       id: 2,
       name: t("footer.refundPolicy"),
-      action: () => navigate("/refund-policy"),
-    },
-    {
-      id: 3,
-      name: t("footer.contactUs"),
-      action: () => dispatch(openModal("contactUsModal")),
+      url: "refund_policy",
     },
   ];
 
@@ -136,16 +131,23 @@ const Footer = () => {
           </p>
         )}
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center justify-center flex-wrap gap-4">
           {links.map((item) => (
-            <button
+            <Link
               key={item.id}
-              onClick={item.action}
+              to={`/page/${item.url}`}
               className="text-sm underline hover:text-primary transition cursor-pointer"
             >
               {item.name}
-            </button>
+            </Link>
           ))}
+
+          <button
+            onClick={() => dispatch(openModal("contactUsModal"))}
+            className="text-sm underline hover:text-primary transition cursor-pointer"
+          >
+            {t("footer.contactUs")}
+          </button>
         </div>
 
         <div className="flex items-center justify-center flex-wrap gap-4">

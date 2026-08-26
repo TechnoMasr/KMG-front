@@ -54,7 +54,7 @@ const ServicesSection = () => {
 
   return (
     <section className="container sectionPadding">
-      <div className="xl:max-w-6xl mx-auto grid grid-cols-1 gap-4 lg:gap-8">
+      <div className="xl:max-w-6xl mx-auto grid grid-cols-1 gap-4 xl:gap-8">
         {list.map((item) => (
           <div key={item.id} className="flex flex-col gap-4 card">
             <div className="flex items-center justify-between gap-4">

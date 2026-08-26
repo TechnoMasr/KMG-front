@@ -371,7 +371,7 @@ const OrderTracker = () => {
 
                     <div className="flex items-center justify-between gap-2">
                       <div
-                        className="text-sm font-semibold text-foreground break-all"
+                        className="text-sm font-semibold text-foreground break-all rich_content"
                         dangerouslySetInnerHTML={{ __html: item.content }}
                       />
 

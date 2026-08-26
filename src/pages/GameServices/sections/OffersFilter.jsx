@@ -1,10 +1,3 @@
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { useTranslation } from "react-i18next";
 import { useQuery } from "@tanstack/react-query";
 import { getCountries, getPlatforms } from "@/api/mainServices";
@@ -24,81 +17,120 @@ const OffersFilter = ({ filters, setFilters, game }) => {
     enabled: !!game,
   });
 
-  const ALL_VALUE = "__all__";
+  const handleCountryChange = (id) => {
+    setFilters((prev) => ({
+      ...prev,
+      country_id: prev.country_id === id ? "" : id, // النقر مجدداً يلغي التحديد
+    }));
+  };
+
+  const handlePlatformChange = (id) => {
+    setFilters((prev) => ({
+      ...prev,
+      platform_id: prev.platform_id === id ? "" : id, // النقر مجدداً يلغي التحديد
+    }));
+  };
 
   return (
-    <div className="container">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* المنطقة */}
-        <div>
-          <label className="block mb-2 text-sm font-medium">
-            {t("OffersFilter.country")} :
-          </label>
-          <Select
-            value={filters.country_id || ALL_VALUE}
-            onValueChange={(value) =>
-              setFilters((prev) => ({
-                ...prev,
-                country_id: value === ALL_VALUE ? "" : value,
-              }))
-            }
-            disabled={platformsLoading}
-          >
-            <SelectTrigger className="rounded-full bg-input w-full cursor-pointer">
-              <SelectValue
-                placeholder={
-                  countriesLoading ? t("loading") : t("OffersFilter.country")
-                }
-              />
-            </SelectTrigger>
+    <div className="container space-y-6">
+      {/* فلتر المنطقة / الدولة */}
+      <div>
+        <label className="block mb-3 text-sm font-semibold">
+          {t("OffersFilter.country")} :
+        </label>
 
-            <SelectContent>
-              <SelectItem value={ALL_VALUE}>{t("OffersFilter.all")}</SelectItem>
+        {countriesLoading ? (
+          <div className="flex gap-2 animate-pulse">
+            <div className="h-9 w-20 bg-muted rounded-full" />
+            <div className="h-9 w-24 bg-muted rounded-full" />
+            <div className="h-9 w-20 bg-muted rounded-full" />
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {/* زر الكل */}
+            <button
+              type="button"
+              onClick={() => handleCountryChange("")}
+              className={`px-4 py-2 text-sm font-medium rounded-full transition-colors border ${
+                !filters.country_id
+                  ? "bg-primary text-white border-primary"
+                  : "bg-background text-foreground border-border hover:bg-accent cursor-pointer"
+              }`}
+            >
+              {t("OffersFilter.all")}
+            </button>
 
-              {countries?.map((c) => (
-                <SelectItem key={c.id} value={String(c.id)}>
+            {/* أزرار الدول */}
+            {countries.map((c) => {
+              const countryIdStr = String(c.id);
+              const isSelected = filters.country_id === countryIdStr;
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => handleCountryChange(countryIdStr)}
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-colors border ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-background text-foreground border-border hover:bg-accent cursor-pointer"
+                  }`}
+                >
                   {c.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
+      </div>
 
-        {/* المنصة */}
-        <div>
-          <label className="block mb-2 text-sm font-medium">
-            {t("OffersFilter.platform")} :
-          </label>
+      {/* فلتر المنصة */}
+      <div>
+        <label className="block mb-3 text-sm font-semibold">
+          {t("OffersFilter.platform")} :
+        </label>
 
-          <Select
-            value={filters.platform_id || ALL_VALUE}
-            onValueChange={(value) =>
-              setFilters((prev) => ({
-                ...prev,
-                platform_id: value === ALL_VALUE ? "" : value,
-              }))
-            }
-            disabled={platformsLoading}
-          >
-            <SelectTrigger className="rounded-full bg-input w-full cursor-pointer">
-              <SelectValue
-                placeholder={
-                  platformsLoading ? t("loading") : t("OffersFilter.platform")
-                }
-              />
-            </SelectTrigger>
+        {platformsLoading ? (
+          <div className="flex gap-2 animate-pulse">
+            <div className="h-9 w-20 bg-muted rounded-full" />
+            <div className="h-9 w-24 bg-muted rounded-full" />
+            <div className="h-9 w-20 bg-muted rounded-full" />
+          </div>
+        ) : (
+          <div className="flex flex-wrap gap-2">
+            {/* زر الكل */}
+            <button
+              type="button"
+              onClick={() => handlePlatformChange("")}
+              className={`px-4 py-2 text-sm font-medium rounded-full transition-colors border ${
+                !filters.platform_id
+                  ? "bg-primary text-white border-primary"
+                  : "bg-background text-foreground border-border hover:bg-accent cursor-pointer"
+              }`}
+            >
+              {t("OffersFilter.all")}
+            </button>
 
-            <SelectContent>
-              <SelectItem value={ALL_VALUE}>{t("OffersFilter.all")}</SelectItem>
-
-              {platforms.map((p) => (
-                <SelectItem key={p.id} value={String(p.id)}>
+            {/* أزرار المنصات */}
+            {platforms.map((p) => {
+              const platformIdStr = String(p.id);
+              const isSelected = filters.platform_id === platformIdStr;
+              return (
+                <button
+                  key={p.id}
+                  type="button"
+                  onClick={() => handlePlatformChange(platformIdStr)}
+                  className={`px-4 py-2 text-sm font-medium rounded-full transition-colors border ${
+                    isSelected
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-background text-foreground border-border hover:bg-accent cursor-pointer"
+                  }`}
+                >
                   {p.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        </div>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

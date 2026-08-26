@@ -43,15 +43,15 @@ const PaymentCard = ({ currentOffer, game }) => {
         </h3>
 
         <ul className="flex flex-col gap-2 text-sm">
-          <li className="flex justify-between">
+          <li className="flex justify-between gap-2">
             <p>{t("paymentCard.region")}</p>
             <span>
               {currentOffer.country_name || t("paymentCard.notSpecified")}
             </span>
           </li>
-          <li className="flex justify-between">
+          <li className="flex justify-between gap-2">
             <p>{t("paymentCard.platform")}</p>
-            <span>
+            <span className="flex flex-wrap">
               {currentOffer.platforms.map((item) => item.name).join(", ") ||
                 t("paymentCard.notSpecified")}
             </span>

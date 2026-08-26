@@ -22,7 +22,7 @@ const TestimonialsCard = ({ item }) => {
       </div>
 
       <div
-        className="text-sm"
+        className="text-sm rich_content"
         dangerouslySetInnerHTML={{ __html: item?.content }}
       />
     </div>
